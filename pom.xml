@@ -97,7 +97,7 @@
 				<configuration>
 					<url>http://localhost:8088/manager/text</url>
 					<username>admin</username>
-					<passowrd></passowrd>
+					<password></password>
 				</configuration>
 			</plugin>
 		</plugins>
