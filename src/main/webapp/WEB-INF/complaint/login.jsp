@@ -19,10 +19,10 @@
 		</section>
 	</header>
 
-	<form method="POST" action="j_security_check">
-		<label>Username:<input type="text" name="j_username" /></label><br />
-		<label>Password:<input type="password" name="j_password" /></label><br />
-		<input type="submit" value="Login!">
+	<form method="POST" action="issues">
+		<label>Username:<input type="text" name="username" /></label><br />
+		<label>Password:<input type="password" name="password" /></label><br />
+		<input type="submit" value="Login">
 	</form>
 
 	<footer class="content foot">
