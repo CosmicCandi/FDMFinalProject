@@ -12,6 +12,8 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.fdmgroup.icms.enums.Department;
+
 public class IssueTest {
 
 	private ApplicationContext context;
