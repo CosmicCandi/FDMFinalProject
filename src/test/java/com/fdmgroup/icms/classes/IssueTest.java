@@ -9,9 +9,13 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class IssueTest {
 
+	private ApplicationContext context;
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -22,6 +26,7 @@ public class IssueTest {
 
 	@Before
 	public void setUp() throws Exception {
+		context = new AnnotationConfigApplicationContext(IcmsBeanConfig.class);
 	}
 
 	@After
@@ -30,7 +35,7 @@ public class IssueTest {
 
 	@Test
 	public void test_addComment_WhenaddCommentIsCalled_ThenANewCommentIsCreated() {
-		Issue issue = new Issue();
+		Issue issue = (Issue)context.getBean("issue");
 		Comment comment = new Comment();
 		issue.addComment(comment);
 		
@@ -40,4 +45,14 @@ public class IssueTest {
 		assertEquals(comment, retrievedComments.get(0));
 	}
 
+	@Test
+	public void test_getIssueId_WhenMutltipleIssuesAreCreated_EachHasAUniqueIssueId() {
+		Issue issue = (Issue)context.getBean("issue");
+		Issue issue2 = (Issue)context.getBean("issue");
+		Issue issue3 = (Issue)context.getBean("issue");
+		
+		assertNotEquals(issue.getIssueId(), issue2.getIssueId());
+		assertNotEquals(issue2.getIssueId(), issue3.getIssueId());
+		assertNotEquals(issue.getIssueId(), issue3.getIssueId());
+	}
 }
