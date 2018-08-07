@@ -17,27 +17,5 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 		<servlet-name>dispatcher</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>LoginServlet</servlet-name>
-		<servlet-class>
-			com.fdmgroup.icms.servlets.LoginServlet
-		</servlet-class>
-	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>LoginServlet</servlet-name>
-		<url-pattern>/issues</url-pattern>
-	</servlet-mapping>
-	
-	<filter>
-		<filter-name>myFilter</filter-name>
-		<filter-class>com.fdmgroup.icms.filters.LoginFilter</filter-class>
-	</filter>
-
-	<filter-mapping>
-		<filter-name>myFilter</filter-name>
-		<servlet-name>LoginServlet</servlet-name>
-	</filter-mapping>
 
 </web-app>
