@@ -4,7 +4,7 @@
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<display-name>ICMS Application</display-name>
 	<welcome-file-list>
-		<welcome-file>/WEB-INF/views/login.jsp</welcome-file>
+		<welcome-file>/WEB-INF/complaint/login.jsp</welcome-file>
 	</welcome-file-list>
 	
 	<servlet>

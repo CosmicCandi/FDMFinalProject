@@ -12,7 +12,7 @@ public enum Department {
 	WEB_APPS("Web Apps"),
 	WEB_SERVICES("Web Services");
 	
-	static EnumSet<Department> ticketHandlers = EnumSet.of(HELP_DESK, NETWORKING, TELECOM, WEB_APPS, WEB_SERVICES);
+	public static EnumSet<Department> ticketHandlers = EnumSet.of(HELP_DESK, NETWORKING, TELECOM, WEB_APPS, WEB_SERVICES);
 	
 	private final String name;
 
