@@ -31,14 +31,14 @@
 	
 	<section>
 		<c:forEach items="${issueList}" var="i"> 
-         <div>
-         	ID <c:out value="${i.issueId}" />
+         <button onclick="location.href='<c:url value="issueDetails" />/${i.issueId}'" type="button">
+         	<c:out value="${i.issueId}" />
          	<c:out value="${i.title}" />
          	<c:out value="${i.dateSubmitted}" />
          	<c:out value="${i.status}" />
          	<c:out value="${i.assignedTo}" />
          	<c:out value="${i.priority}" />
-         </div>
+         </button>
 		</c:forEach>
 	</section>
 	<button onclick="location.href='<c:url value="newIssue" />'" type="button">

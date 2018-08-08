@@ -16,7 +16,7 @@ public class IcmsBeanConfig {
 	@Bean
 	@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 	public Issue issue() {
-		Date currentTime = Calendar.getInstance().getTime();
+		String currentTime = Calendar.getInstance().getTime().toString();
 		
 		Issue newIssue = new Issue(issueIdCounter, currentTime);
 		++issueIdCounter;

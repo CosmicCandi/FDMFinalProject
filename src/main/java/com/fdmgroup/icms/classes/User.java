@@ -1,11 +1,16 @@
 package com.fdmgroup.icms.classes;
 
+import com.fdmgroup.icms.enums.Department;
+import com.fdmgroup.icms.enums.UserRole;
+
 public class User {
 	
 	private long userId;
 	private String email;
 	private String username;
 	private String password;
+	private Department department;
+	private UserRole role;
 	
 	public long getUserId() {
 		return userId;
@@ -30,6 +35,18 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public Department getDepartment() {
+		return department;
+	}
+	public void setDepartment(Department department) {
+		this.department = department;
+	}
+	public UserRole getRole() {
+		return role;
+	}
+	public void setRole(UserRole role) {
+		this.role = role;
 	}
 	
 }

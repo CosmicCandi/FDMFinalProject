@@ -18,8 +18,8 @@ public class Issue {
 	private long submittedBy;
 	private Status Status;
 	private Priority Priority;
-	private Date dateSubmitted;
-	private Date dateResolved;
+	private String dateSubmitted;
+	private String dateResolved;
 	
 	public String getTitle() {
 		return title;
@@ -81,11 +81,11 @@ public class Issue {
 		Priority = priority;
 	}
 
-	public Date getDateResolved() {
+	public String getDateResolved() {
 		return dateResolved;
 	}
 
-	public void setDateResolved(Date dateResolved) {
+	public void setDateResolved(String dateResolved) {
 		this.dateResolved = dateResolved;
 	}
 
@@ -93,14 +93,14 @@ public class Issue {
 		return issueId;
 	}
 
-	public Date getDateSubmitted() {
+	public String getDateSubmitted() {
 		return dateSubmitted;
 	}
 
 	public Issue() {
 	}
 
-	public Issue(long issue_id, Date dateSubmitted) {
+	public Issue(long issue_id, String dateSubmitted) {
 		this.issueId = issue_id;
 		this.dateSubmitted = dateSubmitted;
 	}

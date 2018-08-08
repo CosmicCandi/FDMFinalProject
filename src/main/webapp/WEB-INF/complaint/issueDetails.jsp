@@ -10,6 +10,52 @@
 	<link  href="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>" rel="stylesheet">
 </head>
 <body>
-
+	<header>
+		<section class="row">
+			<a href="<c:url value="/" />" id="logo">
+				<i class="fa fa-edge fa-3x" aria-hidden="true"></i>
+			</a>
+			<h1>Company Internal Complaint Management System</h1>
+		</section>
+	</header>
+	
+	<section>
+		<p>Issue ID:  ${issue.issueId}</p>
+		<p>Title:  ${issue.title}</p>
+		<p>Date Submitted:  ${issue.dateSubmitted}</p>
+		<p>Status: ${issue.status}</p>
+		<p>Assigned To:  ${issue.assignedTo}</p>
+		<p>Priority:  ${issue.priority}</p>
+	</section>
+	
+	<section>
+		<p>Submitted by:  ${submitter.firstname} ${submitter.lastname}</p>
+		<p>Email:  ${submitter.email}</p>
+		<p>Department:  ${submitter.departmentId}</p>
+	</section>
+	
+	<section>
+		<c:forEach items="${commentList}" var="i"> 
+         	<c:out value="${i.comment}" />
+         	<c:out value="${i.dateCreated}" />
+         	<c:out value="${i.userId}" />
+		</c:forEach>
+	</section>
+	
+	<section>
+		
+	<button onclick="#" type="button">Add Comment</button>
+	
+	<c:if test="${user.role == 'GENERAL_ADMINISTRATOR'}">
+		<button onclick="#" type="button">Reject Complaint</button>
+		<button onclick="#" type="button">Change Status</button>
+		<button onclick="#" type="button">Change Department</button>
+	</c:if>
+	
+	</section>
+	
+	<footer class="content foot">
+		<p>&copy; 2018 - POS Masters</p>
+	</footer>
 </body>
 </html>
