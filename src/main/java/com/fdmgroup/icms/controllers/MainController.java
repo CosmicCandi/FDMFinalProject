@@ -3,37 +3,42 @@ package com.fdmgroup.icms.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fdmgroup.icms.classes.IcmsBeanConfig;
-import com.fdmgroup.icms.classes.Issue;
-import com.fdmgroup.icms.classes.User;
 import com.fdmgroup.icms.enums.Department;
 import com.fdmgroup.icms.enums.Priority;
 import com.fdmgroup.icms.enums.Status;
 import com.fdmgroup.icms.enums.UserRole;
+import com.fdmgroup.icms.models.Issue;
+import com.fdmgroup.icms.models.IssueService;
+import com.fdmgroup.icms.models.User;
 
 @Controller
 public class MainController {
 
-	private ApplicationContext context = new AnnotationConfigApplicationContext(IcmsBeanConfig.class);
+	@Autowired
+	private ApplicationContext context;// = new AnnotationConfigApplicationContext(ApplicationContextConfig.class);
+	
+	@Autowired
+	private IssueService issueService;
 	
 	@ModelAttribute
 	public User user() {
-		User user = new User();
-		user.setUserId(1);
+		User user = (User)context.getBean("user");
 		user.setRole(UserRole.GENERAL_ADMINISTRATOR);
 		return user;
 	}
 	
 	@RequestMapping(value="issues")
-	public String issuesPage(Model model){
+	public String issuesPage(Model model, User user){
 		
 		//TODO * Query Database *
 		
@@ -45,7 +50,7 @@ public class MainController {
 		issue.setStatus(Status.SUBMITTED);
 		issue.setTitle("Pickle Issue");
 		issueList.add(issue);
-		issueList.add(issue);
+		issueList.add(issue);	
 		
 		model.addAttribute("issue", issue);
 		model.addAttribute("issueList", issueList);
@@ -54,9 +59,12 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="newIssue")
-	public String newIssuePage(Model model){
+	public String newIssuePage(Model model, Issue newIssue){
 		
-		model.addAttribute("issue", (Issue) context.getBean("issue"));
+		model.addAttribute("newIssue", (Issue) context.getBean("issue"));
+		
+		issueService.createOrUpdateIssue(newIssue);
+		
 		model.addAttribute("departmentList", Department.ticketHandlers);
 		return "newIssue";
 	}
@@ -81,6 +89,14 @@ public class MainController {
 		model.addAttribute("issue", issue);
 		
 		return "issueDetails";
+	}
+	
+	@RequestMapping(value="logout")
+	public String logoutPage(Model model, HttpSession session) {
+		
+		session.invalidate();
+		
+		return "login";
 	}
 	
 }

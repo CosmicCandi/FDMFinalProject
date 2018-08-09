@@ -32,3 +32,4 @@ local.properties
 *.war
 
 *.jsdtscope
+*.lst
