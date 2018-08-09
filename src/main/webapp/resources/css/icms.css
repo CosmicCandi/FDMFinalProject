@@ -1,0 +1,109 @@
+/* Body */
+
+html, body {
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+.row {
+	width: 90%;
+	max-width: 2000px;
+	margin: 0 auto;
+}
+
+
+/* Header */
+
+header {
+	background-color: #3498DB;
+	height: 115px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+header h1 {
+	display:inline;
+	margin-left: 30%;
+	font-size: 400%;
+	color: white;
+	position: relative;
+	top: 20px;
+}
+
+header #logo {
+	position: relative;
+	top: 20px;
+}
+
+header a {
+	text-decoration: none;
+	color: white;
+	font-size: 120%;
+	font-family: sans-serif;
+}
+
+header a:hover {
+	color: gray;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+
+/* Dropdown Menu */
+
+.userButton {
+    background-color: #3498DB;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.userButton:hover, .userButton:focus {
+    background-color: #2980B9;
+}
+
+.dropdown {
+    position: relative;
+    top: 25px;
+    display: inline-block;
+    float: right;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
+
+
+/* Content */
+
+.content {
+	margin-top: 160px
+}
+
+/* Footer */
