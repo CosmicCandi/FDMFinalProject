@@ -10,7 +10,7 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-	<mvc:resources mapping="/src/main/webapp/resources/**" location="/resources/" />
+	<mvc:resources mapping="/resources/**" location="/resources/" />
 	<mvc:annotation-driven />
 	
 <!-- Tell Spring to scan your project for @Controller annotated classes -->

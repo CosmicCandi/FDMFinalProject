@@ -42,33 +42,29 @@ public class MainController {
 		
 		//TODO * Query Database *
 		
-//		List<Issue> issueList = new ArrayList<>();
+		List<Issue> issueList = new ArrayList<>();
 		Issue issue = (Issue) context.getBean("issue");
-//		
+		
 		issue.setAssignedTo(Department.TELECOM);
 		issue.setPriority(Priority.CRITICAL);
 		issue.setStatus(Status.SUBMITTED);
 		issue.setTitle("Pickle Issue");
-//		issueList.add(issue);
-//		issueList.add(issue);
+		issueList.add(issue);
+		issueList.add(issue);	
 		
-		
-		
-//		issueService.createOrUpdateIssue(issue);
-//		
-//		Issue retrievedIssue = issueService.readIssue(issue.getIssueId());
-//		System.out.println(retrievedIssue.getTitle());
-//		
-//		model.addAttribute("issue", issue);
-//		model.addAttribute("issueList", issueList);
+		model.addAttribute("issue", issue);
+		model.addAttribute("issueList", issueList);
 		
 		return "issues";
 	}
 	
 	@RequestMapping(value="newIssue")
-	public String newIssuePage(Model model){
+	public String newIssuePage(Model model, Issue newIssue){
 		
-		model.addAttribute("issue", (Issue) context.getBean("issue"));
+		model.addAttribute("newIssue", (Issue) context.getBean("issue"));
+		
+		issueService.createOrUpdateIssue(newIssue);
+		
 		model.addAttribute("departmentList", Department.ticketHandlers);
 		return "newIssue";
 	}
