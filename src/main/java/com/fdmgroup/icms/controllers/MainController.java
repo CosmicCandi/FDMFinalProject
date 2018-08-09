@@ -3,6 +3,8 @@ package com.fdmgroup.icms.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -33,7 +35,7 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="issues")
-	public String issuesPage(Model model){
+	public String issuesPage(Model model, User user){
 		
 		//TODO * Query Database *
 		
@@ -81,6 +83,14 @@ public class MainController {
 		model.addAttribute("issue", issue);
 		
 		return "issueDetails";
+	}
+	
+	@RequestMapping(value="logout")
+	public String logoutPage(Model model, HttpSession session) {
+		
+		session.invalidate();
+		
+		return "login";
 	}
 	
 }

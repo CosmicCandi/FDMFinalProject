@@ -6,6 +6,7 @@
 <html>
 <head>
 	<title>Internal Complaint Management System</title>
+	<link href="<c:url value="src/main/webapp/resources/css/icms.css" />" rel="stylesheet">
 	<link href="<c:url value="src/main/webapp/resources/css/login.css" />" rel="stylesheet">
 	<link  href="<c:url value="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>" rel="stylesheet">
 </head>
@@ -15,17 +16,18 @@
 			<a href="<c:url value="/" />" id="logo">
 				<i class="fa fa-edge fa-3x" aria-hidden="true"></i>
 			</a>
-			<h1>Company Internal Complaint Management System</h1>
+			<h1>Internal CMS</h1>
 		</section>
 	</header>
-
+	
+	<section class="content">
 	<form method="POST" action="issues">
 		<p style="display: ${Display_Message}">*${Error_Message}</p>
 		<label>Username:<input type="text" name="username" /></label><br />
 		<label>Password:<input type="password" name="password" /></label><br />
 		<input type="submit" value="Login">
 	</form>
-
+	</section>
 	<footer class="content foot">
 		<p>&copy; 2018 - POS Masters</p>
 	</footer>
