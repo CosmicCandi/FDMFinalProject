@@ -1,6 +1,7 @@
 package com.fdmgroup.icms.models;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class Issue {
 	}
 	
 	public Issue(String title, String userDescription, /*List<Comment> comments,*/ Department assignedTo, Long submittedBy, Status status, 
-			     Priority priority, Date dateSubmitted, Date dateResolved){
+			     Priority priority, Date dateResolved){
 		this.title = title;
 		this.userDescription = userDescription;
 //		this.comments = comments;
@@ -37,7 +38,7 @@ public class Issue {
 		this.submittedBy = submittedBy;
 		this.status = status;
 		this.priority = priority;
-		this.dateSubmitted = dateSubmitted;
+		this.dateSubmitted = Calendar.getInstance().getTime();
 		this.dateResolved = dateResolved;
 	}
 	

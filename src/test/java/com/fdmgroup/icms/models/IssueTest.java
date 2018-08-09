@@ -1,6 +1,7 @@
-package com.fdmgroup.icms.classes;
+package com.fdmgroup.icms.models;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.util.List;
 
@@ -9,13 +10,23 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.fdmgroup.icms.enums.Department;
+import com.fdmgroup.icms.classes.ApplicationContextConfig;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes={ApplicationContextConfig.class})
+@ActiveProfiles({"test"})
+@WebAppConfiguration
 public class IssueTest {
 
+	@Autowired
 	private ApplicationContext context;
 	
 	@BeforeClass
@@ -28,7 +39,6 @@ public class IssueTest {
 
 	@Before
 	public void setUp() throws Exception {
-		context = new AnnotationConfigApplicationContext(IcmsBeanConfig.class);
 	}
 
 	@After
@@ -45,16 +55,5 @@ public class IssueTest {
 		
 		assertEquals(1, retrievedComments.size());
 		assertEquals(comment, retrievedComments.get(0));
-	}
-
-	@Test
-	public void test_getIssueId_WhenMutltipleIssuesAreCreated_EachHasAUniqueIssueId() {
-		Issue issue = (Issue)context.getBean("issue");
-		Issue issue2 = (Issue)context.getBean("issue");
-		Issue issue3 = (Issue)context.getBean("issue");
-		
-		assertNotEquals(issue.getIssueId(), issue2.getIssueId());
-		assertNotEquals(issue2.getIssueId(), issue3.getIssueId());
-		assertNotEquals(issue.getIssueId(), issue3.getIssueId());
 	}
 }

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.fdmgroup.icms.classes.User;
+import com.fdmgroup.icms.models.User;
 
 public class InputValidationInterceptor extends HandlerInterceptorAdapter {
 

@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 	@ComponentScan(basePackages= {"com.fdmgroup.icms.classes", "com.fdmgroup.icms.models", "com.fdmgroup.icms.repositories" })
 	@EnableJpaRepositories("com.fdmgroup.icms.repositories")
 	@EnableTransactionManagement
-	@Profile("test")  								// this profile name is used in the "production" version of the code
+	@Profile("test")  								// this profile name is used in the "test" version of the code
 	public class TestJpaConfig {
 
 		

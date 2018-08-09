@@ -1,4 +1,4 @@
-package com.fdmgroup.icms.classes;
+package com.fdmgroup.icms.models;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -16,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import com.fdmgroup.icms.classes.ApplicationContextConfig;
 import com.fdmgroup.icms.enums.Department;
 import com.fdmgroup.icms.enums.Priority;
 import com.fdmgroup.icms.enums.UserRole;
@@ -106,8 +107,6 @@ public class DataConnectivityTest {
 		issue.addComment(comment);
 		issueService.createOrUpdateIssue(issue);
 		
-		System.out.println(issue.getTitle());
-		
 		Comment comment2 = (Comment) context.getBean("comment");
 		comment2.setIssueId(issue);
 		comment2.setUserComment("This is the second comment.");
@@ -122,13 +121,9 @@ public class DataConnectivityTest {
 		comment3.setUserId(0);
 		commentService.createOrUpdateComment(comment3);
 		
-		issue.setTitle("pickle");
-		
 		issueService.createOrUpdateIssue(issue);
 		
 		Issue retrievedIssue = issueService.readIssue(issue.getIssueId());
-				
-		System.out.println(retrievedIssue.getTitle());
 		
 		assertNotNull(retrievedIssue.getComments());
 		assertEquals(3, retrievedIssue.getComments().size());

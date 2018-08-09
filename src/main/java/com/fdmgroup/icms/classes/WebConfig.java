@@ -3,20 +3,21 @@ package com.fdmgroup.icms.classes;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
-@ComponentScan(basePackages = { "com.fdmgroup.icms.classes", "com.fdmgroup.icms.models", "com.fdmgroup.repositories" })
-//, excludeFilters = { @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class) })
-public class WebConfig {
+@ComponentScan(basePackages = { "com.fdmgroup.icms.classes", "com.fdmgroup.icms.models", "com.fdmgroup.repositories", "com.fdmgroup.icms.controllers", "com.fdmgroup.icms.enums", "com.fdmgroup.icms.interceptors" })
+@EnableWebMvc
+public class WebConfig extends WebMvcConfigurerAdapter {
 	
-	private static final String PREFIX = "/WEB-INF/jsp/";
+	private static final String PREFIX = "/WEB-INF/complaint/";
 	private static final String SUFFIX = ".jsp";
 	
 	@Bean
-	InternalResourceViewResolver viewResolver(){
+	public InternalResourceViewResolver viewResolver(){
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setViewClass(JstlView.class);
 		resolver.setPrefix(PREFIX);

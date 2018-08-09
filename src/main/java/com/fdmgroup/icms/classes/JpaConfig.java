@@ -53,7 +53,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 			
 			//change this property to "update" to have the DB persist when running the app multiple times
 			//alternatively, "create-drop" will drop the tables, create them at startup, then drop them again on shutdown
-			properties.setProperty("hibernate.hbm2ddl.auto", "verify");
+			properties.setProperty("hibernate.hbm2ddl.auto", "validate");
 			
 			//since this is the "production" environment, we won't show the SQL being run during database processes
 			properties.setProperty("hibernate.show_sql", "true");

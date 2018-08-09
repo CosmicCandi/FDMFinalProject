@@ -10,7 +10,7 @@ import com.fdmgroup.icms.repositories.IssueJpaRepository;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-@Service
+@Service("issueService")
 @Transactional(readOnly=true)
 public class IssueService {
 
