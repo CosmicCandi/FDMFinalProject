@@ -14,7 +14,10 @@
 	
 	<!-- Tell Spring to scan your project for @Controller annotated classes -->
 	<context:component-scan base-package="com.fdmgroup.icms.controllers" />
-
+	<context:annotation-config />
+	
+	<bean class="org.fdmgroup.icms.User" id="pickle" />
+	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
