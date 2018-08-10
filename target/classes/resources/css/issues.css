@@ -1,0 +1,16 @@
+.content {
+	text-align: center;
+}
+
+.content p {
+	display: inline;
+	margin: 0 65px;
+}
+
+.content .issueButtons {
+	text-decoration: none;
+}
+
+.content .issueButtons .buttonSection p {
+	margin: 0 65px;
+}

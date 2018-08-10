@@ -4,9 +4,13 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +21,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.fdmgroup.icms.appconfig.ApplicationContextConfig;
-import com.fdmgroup.icms.models.Comment;
-import com.fdmgroup.icms.models.CommentService;
-import com.fdmgroup.icms.models.Issue;
-import com.fdmgroup.icms.models.IssueService;
-import com.fdmgroup.icms.models.User;
-import com.fdmgroup.icms.models.UserService;
 
 @RunWith(SpringJUnit4ClassRunner.class)		// runs with Spring to be autowired
 @ContextConfiguration(classes={ApplicationContextConfig.class})	// classes which include for this test's dependencies
@@ -42,25 +40,50 @@ public class DataConnectivityTest {
 	@Autowired
 	private UserService userService;
 	
+	private List<Comment> comments;
+	private Comment comment;
+	private Issue issue;
+	private User user;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		comments = new ArrayList<>();
+		comment = (Comment)context.getBean("comment");
+		issue = (Issue)context.getBean("issue");
+		
+		comment.setUserComment("This is a default comment.");
+		comment.setUserId(issue.getIssueId());
+		comment.setIssueId(issue);
+	    comment.setUserId(0);
+	    
+	    comments.add(comment);
+	    
+	    issue.setAssignedTo(Department.HR);
+		issue.setPriority(Priority.CRITICAL);
+		issue.setTitle("This is a default issue.");
+		issue.setComments(comments);
+		issue.setDateSubmitted(new Date());
+		
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+	
 	
 	//Long issueId, String title, String userDescription, List<Comment> comments, Department assignedTo, Long submittedBy, Status status, 
     //Priority priority, Date dateSubmitted, Date dateResolved
 				
 	@Test
 	public void test_CreateIssue_WritesPassedIssueToDatabase() {
-		List<Comment> comments = new ArrayList<>();
-		Comment comment = (Comment) context.getBean("comment");
-		Issue issue = (Issue) context.getBean("issue");
-		
-		comment.setUserComment("This should hopefully work.");
-		comment.setUserId(issue.getIssueId());
-	    comments.add(comment);
-		comment.setIssueId(issue);
-		
-		issue.setAssignedTo(Department.HR);
-		issue.setPriority(Priority.CRITICAL);
-		issue.setTitle("Please work!");
-		issue.setComments(comments);
 		issueService.createOrUpdateIssue(issue);
 
 		Issue retrievedIssue = issueService.readIssue(issue.getIssueId());
@@ -88,17 +111,7 @@ public class DataConnectivityTest {
 	
 	@Test
 	public void test_IssueAddComment_SuccessfullyAddsAComment_AndWritesItToTheDatabase(){
-		Issue issue = (Issue) context.getBean("issue");
-		issue.setAssignedTo(Department.HR);
-	    issue.setPriority(Priority.CRITICAL);
-	    issue.setTitle("This is a default issue.");
-	    issue.setDateSubmitted(Calendar.getInstance().getTime());
-	    
-	    Comment comment = (Comment) context.getBean("comment");
-		comment.setIssueId(issue);
-		comment.setUserComment("Testing adding a comment to an existing issue");
-		comment.setUserId(0);
-		issue.addComment(comment);
+
 		issueService.createOrUpdateIssue(issue);
 		
 		Comment comment2 = (Comment) context.getBean("comment");
@@ -108,7 +121,6 @@ public class DataConnectivityTest {
 		
 		issue.addComment(comment2);
 
-		
 		Comment comment3 = (Comment) context.getBean("comment");
 		comment3.setIssueId(issue);
 		comment3.setUserComment("Written directly to database");
