@@ -1,4 +1,4 @@
-package com.fdmgroup.icms.classes;
+package com.fdmgroup.icms.appconfig;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -9,10 +9,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+<<<<<<< HEAD:src/main/java/com/fdmgroup/icms/classes/WebConfig.java
 import com.fdmgroup.icms.interceptors.InputValidationInterceptor;
+=======
+import com.fdmgroup.icms.controllers.InputValidationInterceptor;
 
 @Configuration
-@ComponentScan(basePackages = { "com.fdmgroup.icms.classes", "com.fdmgroup.icms.models", "com.fdmgroup.repositories", "com.fdmgroup.icms.controllers", "com.fdmgroup.icms.enums", "com.fdmgroup.icms.interceptors" })
+@ComponentScan(basePackages = { "com.fdmgroup.icms.appconfig", "com.fdmgroup.icms.models", "com.fdmgroup.repositories", "com.fdmgroup.icms.controllers", "com.fdmgroup.icms.interceptors"})
 @EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
 	
@@ -27,5 +30,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		resolver.setSuffix(SUFFIX);
 		return resolver;
 	}
-
+	
+	@Override
+	public void addInterceptors(InterceptorRegistry registry){
+		registry.addInterceptor(new InputValidationInterceptor());
+	}
 }

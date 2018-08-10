@@ -14,7 +14,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="issue_comment")
+@Table(name="icms_issue_comment")
 @SequenceGenerator(name="comment_id_seq", initialValue=1, allocationSize=1)
 public class Comment {
 
@@ -29,20 +29,21 @@ public class Comment {
 	}
 	
 	@Id
+	@Column(name="comment_id")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="comment_id_seq")
 	private int commentId;
 	
-	@Column(name="userComment")
+	@Column(name="user_comment")
 	private String userComment;
 		
 	@ManyToOne
-	@JoinColumn(name="issueId")
+	@JoinColumn(name="issue_id")
 	private Issue issue;
 	
-	@Column
+	@Column(name="date_created")
 	private Date dateCreated;
 	
-	@Column
+	@Column(name="user_id")
 	private int userId;
 
 	public String getUserComment() {
@@ -76,6 +77,4 @@ public class Comment {
 	public int getCommentId() {
 		return commentId;
 	}
-	
-		
 }

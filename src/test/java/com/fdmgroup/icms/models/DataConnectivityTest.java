@@ -16,10 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import com.fdmgroup.icms.classes.ApplicationContextConfig;
-import com.fdmgroup.icms.enums.Department;
-import com.fdmgroup.icms.enums.Priority;
-import com.fdmgroup.icms.enums.UserRole;
+import com.fdmgroup.icms.appconfig.ApplicationContextConfig;
 import com.fdmgroup.icms.models.Comment;
 import com.fdmgroup.icms.models.CommentService;
 import com.fdmgroup.icms.models.Issue;
@@ -71,9 +68,7 @@ public class DataConnectivityTest {
 		assertEquals(retrievedIssue.getIssueId(), issue.getIssueId());
 		assertEquals(retrievedIssue.getTitle(), issue.getTitle());
 		assertEquals(retrievedIssue.getComments().get(0).getUserComment(), issue.getComments().get(0).getUserComment());
-		
-
-		issueService.removeIssue(issue.getIssueId());
+				
 	}
 
 	@Test
@@ -89,7 +84,6 @@ public class DataConnectivityTest {
 		
 		User retrievedUser = userService.readUser("civilwardabest");
 		assertEquals(user.getUsername(), retrievedUser.getUsername());
-		userService.removeUser(user.getUserId());
 	}
 	
 	@Test
@@ -127,7 +121,6 @@ public class DataConnectivityTest {
 		
 		assertNotNull(retrievedIssue.getComments());
 		assertEquals(3, retrievedIssue.getComments().size());
-		issueService.removeIssue(issue.getIssueId());
 	}
 	
 	// TODO Test sorting retrieved comments by date
