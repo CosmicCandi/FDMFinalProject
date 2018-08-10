@@ -27,7 +27,7 @@ public class Issue {
 		
 	public Issue(){
 		comments = new ArrayList<>();
-		this.dateSubmitted = Calendar.getInstance().getTime();
+		this.dateSubmitted = new Date();
 	}
 	
 	public Issue(String title, String userDescription, /*List<Comment> comments,*/ Department assignedTo, Long submittedBy, Status status, 

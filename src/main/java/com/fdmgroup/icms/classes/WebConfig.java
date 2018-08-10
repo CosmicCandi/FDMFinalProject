@@ -4,9 +4,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
+
+import com.fdmgroup.icms.interceptors.InputValidationInterceptor;
 
 @Configuration
 @ComponentScan(basePackages = { "com.fdmgroup.icms.classes", "com.fdmgroup.icms.models", "com.fdmgroup.repositories", "com.fdmgroup.icms.controllers", "com.fdmgroup.icms.enums", "com.fdmgroup.icms.interceptors" })
@@ -24,4 +27,5 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		resolver.setSuffix(SUFFIX);
 		return resolver;
 	}
+
 }

@@ -17,7 +17,6 @@
 				<i class="fa fa-edge fa-3x" aria-hidden="true"></i>
 			</a>
 			<h1>Internal CMS</h1>
-		</section>
 		
 		<div class="dropdown">
 		<button onclick="toggle()" class="userButton">
@@ -51,7 +50,7 @@
 	</script>
 	</header>
 	<section class="content">
-	<section>
+	<section class="issueInfo">
 		<p>Issue ID:  ${issue.issueId}</p>
 		<p>Title:  ${issue.title}</p>
 		<p>Date Submitted:  ${issue.dateSubmitted}</p>
@@ -60,13 +59,13 @@
 		<p>Priority:  ${issue.priority}</p>
 	</section>
 	
-	<section>
+	<section class="submitterInfo">
 		<p>Submitted by:  ${submitter.firstname} ${submitter.lastname}</p>
 		<p>Email:  ${submitter.email}</p>
 		<p>Department:  ${submitter.departmentId}</p>
 	</section>
 	
-	<section>
+	<section class="commentInfo">
 		<c:forEach items="${commentList}" var="i"> 
          	<c:out value="${i.comment}" />
          	<c:out value="${i.dateCreated}" />
@@ -74,42 +73,42 @@
 		</c:forEach>
 	</section>
 	
-	<section>
+	<section class="buttonOptions">
 		
-	<button onclick="#" type="button">Add Comment</button>
+	<button onclick="" type="button">Add Comment</button>
 	<c:if test="${issue.status != 'CLOSED'}">
 		<c:if test="${issue.status == 'RESOLVED'}">
-			<button onclick="#" type="button">Approve Resolution</button>
+			<button onclick="" type="button">Approve Resolution</button>
 		</c:if>
 	</c:if>
 	
 	<c:if test="${user.role == 'DEPARTMENT_ADMINISTRATOR'}">
 		<c:if test="${issue.status != 'CLOSED'}">
-			<button onclick="#" type="button">Change Status</button>
-			<button onclick="#" type="button">Request Department Change</button>
+			<button onclick="" type="button">Change Status</button>
+			<button onclick="" type="button">Request Department Change</button>
 			<c:if test="${issue.submittedBy != submitter.userId}">
-				<button onclick="#" type="button">Reject Complaint</button>
+				<button onclick="" type="button">Reject Complaint</button>
 			</c:if>
 		</c:if>
 	</c:if>
 	
 	<c:if test="${user.role == 'GENERAL_ADMINISTRATOR'}">
 		<c:if test="${issue.status != 'CLOSED'}">
-			<button onclick="#" type="button">Change Status</button>
-			<button onclick="#" type="button">Change Department</button>
+			<button onclick="" type="button">Change Status</button>
+			<button onclick="" type="button">Change Department</button>
 			<c:if test="${issue.submittedBy != submitter.userId}">
-				<button onclick="#" type="button">Reject Complaint</button>
+				<button onclick="" type="button">Reject Complaint</button>
 			</c:if>
 		</c:if>
 		
 		<c:if test="${issue.status == 'CLOSED'}">
-			<button onclick="#" type="button">Reopen Complaint</button>
+			<button onclick="" type="button">Reopen Complaint</button>
 		</c:if>
 	</c:if>
 	
 	<c:if test="${issue.status != 'CLOSED'}">
 		<c:if test="${issue.submittedBy == submitter.userId}">
-			<button onclick="#" type="button">Cancel Complaint</button>
+			<button onclick="" type="button">Cancel Complaint</button>
 		</c:if>
 	</c:if>
 	
