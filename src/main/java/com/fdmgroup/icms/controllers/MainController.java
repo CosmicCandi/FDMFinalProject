@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fdmgroup.icms.enums.Department;
-import com.fdmgroup.icms.enums.Priority;
-import com.fdmgroup.icms.enums.Status;
-import com.fdmgroup.icms.enums.UserRole;
+import com.fdmgroup.icms.models.Department;
 import com.fdmgroup.icms.models.Issue;
 import com.fdmgroup.icms.models.IssueService;
+import com.fdmgroup.icms.models.Priority;
+import com.fdmgroup.icms.models.Status;
 import com.fdmgroup.icms.models.User;
+import com.fdmgroup.icms.models.UserRole;
 
 @Controller
 public class MainController {

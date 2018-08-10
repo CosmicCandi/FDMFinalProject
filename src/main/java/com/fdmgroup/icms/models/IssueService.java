@@ -5,7 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fdmgroup.icms.classes.TestJpaConfig;
+import com.fdmgroup.icms.appconfig.TestJpaConfig;
 import com.fdmgroup.icms.repositories.IssueJpaRepository;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;

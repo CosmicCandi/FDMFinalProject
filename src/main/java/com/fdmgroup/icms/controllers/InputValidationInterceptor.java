@@ -1,4 +1,4 @@
-package com.fdmgroup.icms.interceptors;
+package com.fdmgroup.icms.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
