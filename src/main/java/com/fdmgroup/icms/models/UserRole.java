@@ -1,4 +1,4 @@
-package com.fdmgroup.icms.enums;
+package com.fdmgroup.icms.models;
 
 public enum UserRole {
 	GENERAL_USER ("General User"),

@@ -16,12 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fdmgroup.icms.enums.Department;
-import com.fdmgroup.icms.enums.Priority;
-import com.fdmgroup.icms.enums.Status;
-
 @Entity
-@Table(name="issues")
+@Table(name="icms_issue")
 @SequenceGenerator(name="issue_id_seq", initialValue=1, allocationSize=1 )
 public class Issue {
 		
@@ -44,14 +40,14 @@ public class Issue {
 	}
 	
 	@Id
-	@Column(name="issueid")
+	@Column(name="issue_id")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="issue_id_seq")
 	private int issueId;
 	
 	@Column(name="title")
 	private String title;
 	
-	@Column(name="userdescription")
+	@Column(name="user_description")
 	private String userDescription;
 	
 	@OneToMany(mappedBy="issue", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -72,7 +68,7 @@ public class Issue {
 	@Column(name="department")
 	private Department assignedTo;
 	
-	@Column(name="submittedby")
+	@Column(name="submitted_by")
 	private Long submittedBy;
 	
 	@Column(name="status")
@@ -81,10 +77,10 @@ public class Issue {
 	@Column(name="priority")
 	private Priority priority;
 	
-	@Column(name="datesubmitted")
+	@Column(name="date_submitted")
 	private Date dateSubmitted;
 	
-	@Column(name="dateresolved")
+	@Column(name="date_resolved")
 	private Date dateResolved;
 
 	public int getIssueId() {
@@ -159,5 +155,4 @@ public class Issue {
 	public void setDateResolved(Date dateResolved) {
 		this.dateResolved = dateResolved;
 	}
-		
 }

@@ -8,9 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fdmgroup.icms.enums.Department;
-import com.fdmgroup.icms.enums.UserRole;
-
 @Entity
 @Table(name="icms_user")
 @SequenceGenerator(name="user_id_seq", initialValue=1, allocationSize=1)
@@ -28,29 +25,29 @@ public class User {
 	}
 	
 	@Id
-	@Column
+	@Column(name="user_id")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="user_id_seq")
 	private int userId;
 	
-	@Column
+	@Column(name="first_name")
 	private String firstName;
 	
-	@Column
+	@Column(name="last_name")
 	private String lastName;
 	
-	@Column
+	@Column(name="username")
 	private String username;
 	
-	@Column
+	@Column(name="password")
 	private String password;
 	
-	@Column
+	@Column(name="email")
 	private String email;
 	
-	@Column
+	@Column(name="role")
 	private UserRole role;
 	
-	@Column 
+	@Column(name="department_id")
 	private Department departmentId;
 
 	public String getFirstName() {
@@ -112,6 +109,5 @@ public class User {
 	public int getUserId() {
 		return userId;
 	}
-	
 
 }
