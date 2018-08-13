@@ -50,7 +50,8 @@ public class MainController {
 		issue.setStatus(Status.SUBMITTED);
 		issue.setTitle("Pickle Issue");
 		issueList.add(issue);
-		issueList.add(issue);	
+		issueList.add(issue);
+		issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);
 		
 		model.addAttribute("issue", issue);
 		model.addAttribute("issueList", issueList);
@@ -59,11 +60,9 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="newIssue")
-	public String newIssuePage(Model model, Issue newIssue){
+	public String newIssuePage(Model model){
 		
 		model.addAttribute("newIssue", (Issue) context.getBean("issue"));
-		
-		issueService.createOrUpdateIssue(newIssue);
 		
 		model.addAttribute("departmentList", Department.ticketHandlers);
 		return "newIssue";
@@ -97,6 +96,14 @@ public class MainController {
 		session.invalidate();
 		
 		return "login";
+	}
+	
+	@RequestMapping(value="createIssue")
+	public String createIssuePage(Model model, Issue issue) {
+		
+		issueService.createOrUpdateIssue(issue);
+		
+		return "issues";
 	}
 	
 }

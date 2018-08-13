@@ -6,13 +6,26 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+<<<<<<< HEAD
+	<classpathentry excluding="**" kind="src" output="target/test-classes" path="src/test/resources">
+=======
 	<classpathentry kind="src" path="src/test/resources"/>
 	<classpathentry kind="src" path="src/main/webapp"/>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+>>>>>>> c74490b76f11e84cf7079b96b7e9f874ec3a65ba
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+<<<<<<< HEAD
 	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="src" path="src/main/webapp"/>
+=======
+>>>>>>> c74490b76f11e84cf7079b96b7e9f874ec3a65ba
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
 			<attribute name="optional" value="true"/>

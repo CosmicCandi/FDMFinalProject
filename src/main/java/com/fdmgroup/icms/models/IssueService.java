@@ -29,6 +29,7 @@ public class IssueService {
 		issueRepo.delete(issueId);
 	}
 
+<<<<<<< HEAD
 	public List<Issue> findAllByUserId(int userId) {
 		return issueRepo.findBySubmittedByOrderByDateSubmittedDesc(userId);
 	}
@@ -37,6 +38,10 @@ public class IssueService {
 	public void deleteAllIssues() {
 		issueRepo.deleteAll();
 	}
+=======
+	
+	
+>>>>>>> d55e50c63221221ea9ce4572d7329643ecf070db
 }
 	
 	

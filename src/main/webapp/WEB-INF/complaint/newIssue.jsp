@@ -53,11 +53,12 @@
 	</header>
 
 	<section class="content">
-	<sf:form action="/" method="POST" id="newIssueForm" modelAttribute="newIssue">
+	<sf:form action="createIssue" method="POST" id="newIssueForm" modelAttribute="newIssue">
 		<sf:label path="assignedTo">Actionable Department</sf:label>
 		<sf:select path="assignedTo">
         	<sf:option value = "NONE" label = "Select"/>
         	<sf:options items = "${departmentList}" />
+        	<input type="submit" value="Submit" name="submit" />
         </sf:select>
 		<sf:label path="title">Issue Title</sf:label>
 		<sf:input type="text" path="title" /><br />

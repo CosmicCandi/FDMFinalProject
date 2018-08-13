@@ -1,1 +1,33 @@
-@CHARSET "ISO-8859-1";
+.content .issueInfo {
+	display: inline-block;
+    width: 40%;
+    margin-right: 9%;
+    text-align: left;
+}
+
+.content .submitterInfo {
+	display: inline-block;
+    width: 40%;
+    text-align: left;
+}
+
+.content .commentInfo {
+	
+}
+
+.content .buttonOptions {
+	
+}
+
+.content button {
+	font-size: 90%;
+	width: auto;
+	text-align: center;
+	margin: 0px 10% 30px;
+	padding: 0px 20px;
+	border: none;
+	cursor: pointer;
+	background: #3498DB;
+	color: white;
+	border-radius: 1%;
+}
