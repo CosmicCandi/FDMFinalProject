@@ -8,10 +8,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-
-<<<<<<< HEAD:src/main/java/com/fdmgroup/icms/classes/WebConfig.java
-import com.fdmgroup.icms.interceptors.InputValidationInterceptor;
-=======
 import com.fdmgroup.icms.controllers.InputValidationInterceptor;
 
 @Configuration
