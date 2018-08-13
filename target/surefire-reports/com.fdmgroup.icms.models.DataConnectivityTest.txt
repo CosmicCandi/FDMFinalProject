@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.fdmgroup.icms.models.DataConnectivityTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 12.341 sec
-=======
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.404 sec
->>>>>>> a8ac032424d4172aa91e666db7f7c6e691585ad6
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 5.568 sec

@@ -60,44 +60,62 @@
 	</section>
 	
 	<section class="submitterInfo">
-		<p>Submitted by:  ${submitter.firstname} ${submitter.lastname}</p>
+		<p>Submitted by:  ${submitter.firstName} ${submitter.lastName}</p>
 		<p>Email:  ${submitter.email}</p>
 		<p>Department:  ${submitter.departmentId}</p>
 	</section>
 	
-	<section class="commentInfo">
-		<c:forEach items="${commentList}" var="i"> 
-         	<c:out value="${i.comment}" />
-         	<c:out value="${i.dateCreated}" />
-         	<c:out value="${i.userId}" />
-		</c:forEach>
+	<section class="description">
+		<p>${issue.userDescription}</p>
 	</section>
+	
+	<div class="tableHeader">
+		<table>
+			<tr class="labels">
+				<th id="commentUser">User</th>
+				<th id="commentDate">Date</th>
+				<th id="comment">Comment</th>
+			</tr>
+		</table>
+	</div>
+	<div class="table">
+	<table id="issueTable">
+	
+	<c:forEach items="${commentList}" var="i"> 
+    	<tr>
+         	<td>${i.userId}</td>
+         	<td>${i.dateCreated}</td>
+         	<td class="commentRow">${i.userComment} </td>
+        </tr>       	
+	</c:forEach>
+	</table>
+	</div>
 	
 	<section class="buttonOptions">
 		
-	<button onclick="" type="button">Add Comment</button>
+	<button onclick="" type="button"><p>Add Comment</p></button>
 	<c:if test="${issue.status != 'CLOSED'}">
 		<c:if test="${issue.status == 'RESOLVED'}">
-			<button onclick="" type="button">Approve Resolution</button>
+			<button onclick="" type="button"><p>Approve Resolution</p></button>
 		</c:if>
 	</c:if>
 	
 	<c:if test="${user.role == 'DEPARTMENT_ADMINISTRATOR'}">
 		<c:if test="${issue.status != 'CLOSED'}">
-			<button onclick="" type="button">Change Status</button>
-			<button onclick="" type="button">Request Department Change</button>
+			<button onclick="" type="button"><p>Change Status</p></button>
+			<button onclick="" type="button"><p>Request Department Change</p></button>
 			<c:if test="${issue.submittedBy != submitter.userId}">
-				<button onclick="" type="button">Reject Complaint</button>
+				<button onclick="" type="button"><p>Reject Complaint</p></button>
 			</c:if>
 		</c:if>
 	</c:if>
 	
 	<c:if test="${user.role == 'GENERAL_ADMINISTRATOR'}">
 		<c:if test="${issue.status != 'CLOSED'}">
-			<button onclick="" type="button">Change Status</button>
-			<button onclick="" type="button">Change Department</button>
+			<button onclick="" type="button"><p>Change Status</p></button>
+			<button onclick="" type="button"><p>Change Department</p></button>
 			<c:if test="${issue.submittedBy != submitter.userId}">
-				<button onclick="" type="button">Reject Complaint</button>
+				<button onclick="" type="button"><p>Reject Complaint</p></button>
 			</c:if>
 		</c:if>
 		
@@ -108,7 +126,7 @@
 	
 	<c:if test="${issue.status != 'CLOSED'}">
 		<c:if test="${issue.submittedBy == submitter.userId}">
-			<button onclick="" type="button">Cancel Complaint</button>
+			<button onclick="" type="button"><p>Cancel Complaint</p></button>
 		</c:if>
 	</c:if>
 	

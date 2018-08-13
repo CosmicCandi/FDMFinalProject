@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fdmgroup.icms.models.Comment;
 import com.fdmgroup.icms.models.Department;
 import com.fdmgroup.icms.models.Issue;
 import com.fdmgroup.icms.models.IssueService;
@@ -45,7 +46,6 @@ public class MainController {
 		List<Issue> issueList = new ArrayList<>();
 		Issue issue = (Issue) context.getBean("issue");
 		
-<<<<<<< HEAD
 		issue.setAssignedTo(Department.TELECOM);
 		issue.setPriority(Priority.CRITICAL);
 		issue.setStatus(Status.SUBMITTED);
@@ -53,25 +53,16 @@ public class MainController {
 		issueList.add(issue);
 		issueList.add(issue);
 		issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);
-=======
-		switch (user.getRole()) {
-		case GENERAL_ADMINISTRATOR: 
-			issueList = issueService.readAll();
-			break;
-		case DEPARTMENT_ADMINISTRATOR:
-			break;
-		case GENERAL_USER:
-			break;
-		}
-		
-		
-//		issue.setAssignedTo(Department.TELECOM);
-//		issue.setPriority(Priority.CRITICAL);
-//		issue.setStatus(Status.SUBMITTED);
-//		issue.setTitle("Pickle Issue");
-//		issueList.add(issue);
-//		issueList.add(issue);	
->>>>>>> a8ac032424d4172aa91e666db7f7c6e691585ad6
+
+//		switch (user.getRole()) {
+//		case GENERAL_ADMINISTRATOR: 
+//			issueList = issueService.readAll();
+//			break;
+//		case DEPARTMENT_ADMINISTRATOR:
+//			break;
+//		case GENERAL_USER:
+//			break;
+//		}	
 		
 		model.addAttribute("issue", issue);
 		model.addAttribute("issueList", issueList);
@@ -104,7 +95,32 @@ public class MainController {
 		issue.setPriority(Priority.CRITICAL);
 		issue.setStatus(Status.SUBMITTED);
 		issue.setTitle("Pickle Issue");
+		issue.setUserDescription("User description User description User description User description User description User description User description User description User descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser description");
 		
+		User submitter = (User) context.getBean("user");
+		submitter.setFirstName("Steven");
+		submitter.setLastName("Smith");
+		submitter.setEmail("steve_s@email.com");
+		submitter.setDepartmentId(Department.ACCOUNTING);
+		
+		List<Comment> commentList = new ArrayList<>();
+		
+		Comment comment = (Comment) context.getBean("comment");
+		comment.setUserComment("This is a comment");
+		Comment comment2 = (Comment) context.getBean("comment");
+		comment2.setUserComment("This is a comment also");
+		Comment comment3 = (Comment) context.getBean("comment");
+		comment3.setUserComment("This is a comment too");
+		Comment comment4 = (Comment) context.getBean("comment");
+		comment4.setUserComment("This is a comment This is a comment This is a comment This is a comment This is a comment This is a comment");
+		
+		commentList.add(comment);
+		commentList.add(comment2);
+		commentList.add(comment3);
+		commentList.add(comment4);
+		
+		model.addAttribute("submitter", submitter);
+		model.addAttribute("commentList", commentList);
 		model.addAttribute("issue", issue);
 		
 		return "issueDetails";

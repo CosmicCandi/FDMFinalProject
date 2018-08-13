@@ -15,50 +15,30 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.os.patch.level" value="Service Pack 1"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
-<<<<<<< HEAD
     <property name="user.dir" value="C:\Users\harley.halley\JavaEclipseWorkspace\icms"/>
-=======
-    <property name="user.dir" value="C:\Users\Russell.Goddard.FDMGROUP\JavaEclipseWorkspace\icms"/>
->>>>>>> a8ac032424d4172aa91e666db7f7c6e691585ad6
     <property name="java.runtime.version" value="1.8.0_60-b27"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="java.endorsed.dirs" value="C:\Program Files\Java\jdk1.8.0_60\jre\lib\endorsed"/>
     <property name="os.arch" value="amd64"/>
-<<<<<<< HEAD
     <property name="java.io.tmpdir" value="C:\Users\HARLEY~1.HAL\AppData\Local\Temp\"/>
-=======
-    <property name="java.io.tmpdir" value="C:\Users\RUSSEL~1.FDM\AppData\Local\Temp\"/>
->>>>>>> a8ac032424d4172aa91e666db7f7c6e691585ad6
     <property name="line.separator" value="
 "/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 7"/>
-<<<<<<< HEAD
-    <property name="classworlds.conf" value="C:\Users\harley.halley\JavaEclipseWorkspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf8188190433226116132.tmp"/>
-=======
-    <property name="classworlds.conf" value="C:\Users\Russell.Goddard.FDMGROUP\JavaEclipseWorkspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf199590826170806518.tmp"/>
->>>>>>> a8ac032424d4172aa91e666db7f7c6e691585ad6
+    <property name="classworlds.conf" value="C:\Users\harley.halley\JavaEclipseWorkspace\.metadata\.plugins\org.eclipse.m2e.launching\launches\m2conf2497363784985141372.tmp"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.library.path" value="C:\Program Files\Java\jdk1.8.0_60\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\MSBuild\12.0\Bin\;C:\Windows\system32\config\systemprofile\Documents\OracleBase\product\12.1.0\client_1;C:\Windows\system32\config\systemprofile\Documents\OracleBase\product\12.1.0\client_1\bin;C:\oraclexe\app\oracle\product\11.2.0\server\bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows;C:\Windows\system32;C:\Windows\System32\Wbem;C:\WINDOWS\system32\WindowsPowerShell\v1.0;C:\Program Files\IBM\Client Access\Emulator;C:\Program Files\IBM\Client Access\Shared;C:\Program Files\IBM\Client Access\;C:\oraclexe\app\oracle\product\11.2.0\server\bin;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;c:\Program Files\Microsoft ASP.NET\ASP.NET Web Pages\v2.0\;C:\Program Files\TortoiseSVN\bin;C:\apache-maven-3.2.5\bin;C:\apache-tomcat-7.0.64\bin;C:\apache-tomcat-8.0.26\bin;C:\Program Files\Java\jdk1.8.0_60;C:\Program Files\Java\jdk1.8.0_60\bin;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files\SlikSvn\bin;C:\Program Files\Git\cmd;."/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.class.version" value="52.0"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="os.version" value="6.1"/>
-<<<<<<< HEAD
     <property name="user.home" value="C:\Users\harley.halley"/>
-=======
-    <property name="user.home" value="C:\Users\Russell.Goddard.FDMGROUP"/>
->>>>>>> a8ac032424d4172aa91e666db7f7c6e691585ad6
     <property name="user.timezone" value="America/New_York"/>
     <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
     <property name="java.specification.version" value="1.8"/>
     <property name="file.encoding" value="Cp1252"/>
-<<<<<<< HEAD
     <property name="user.name" value="harley.halley"/>
-=======
-    <property name="user.name" value="Russell.Goddard"/>
->>>>>>> a8ac032424d4172aa91e666db7f7c6e691585ad6
     <property name="java.class.path" value="C:\apache-maven-3.2.5\boot\plexus-classworlds-2.5.2.jar"/>
     <property name="java.vm.specification.version" value="1.8"/>
     <property name="sun.arch.data.model" value="64"/>

@@ -5,28 +5,16 @@ GRANT CONNECT, RESOURCE TO test;
 GRANT CREATE SESSION TO test;
 ALTER USER test QUOTA 10M ON system;
 
-#Create Users for test, MAKE SURE THIS IS RUN AS THE test USER
-
-INSERT INTO icms_user
-VALUES (0, 7, 'harley@halley.com', 'Harley', 'Halley', 'password', 0, 'civilwardabest');
-
-INSERT INTO icms_user
-VALUES (15, 1, 'hdadmin@icms.com', 'Roymond', 'Horsewingding', '12345678', 1, 'roymondhd');
-
-INSERT INTO icms_user
-VALUES (101, 6, 'genadmin@icms.com', 'Tom', 'Bombadil', 'section', 2, 'pointless');
-
-
 #Create Users for production, MAKE SURE THIS IS RUN FOR THE PRODUCTION ENVIRONMENT
 
 INSERT INTO icms_user
-VALUES (0, 7, 'harley@halley.com', 'Harley', 'Halley', 'password', 0, 'civilwardabest');
+VALUES (0, WEB_SERVICES, 'harley@halley.com', 'Harley', 'Halley', 'password', GENERAL_USER, 'civilwardabest');
 
 INSERT INTO icms_user
-VALUES (15, 1, 'hdadmin@icms.com', 'Roymond', 'Horsewingding', '12345678', 1, 'roymondhd');
+VALUES (15, HELP_DESK, 'hdadmin@icms.com', 'Roymond', 'Horsewingding', '12345678', DEPARTMENT_ADMINISTRATOR, 'roymondhd');
 
 INSERT INTO icms_user
-VALUES (101, 6, 'genadmin@icms.com', 'Tom', 'Bombadil', 'section', 2, 'pointless');
+VALUES (101, WEB_APPS, 'genadmin@icms.com', 'Tom', 'Bombadil', 'section', GENERAL_ADMINISTRATOR, 'pointless');
 
 #Production tables
 
