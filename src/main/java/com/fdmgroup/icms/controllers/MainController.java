@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fdmgroup.icms.models.Department;
 import com.fdmgroup.icms.models.Issue;
 import com.fdmgroup.icms.models.IssueService;
-import com.fdmgroup.icms.models.Priority;
-import com.fdmgroup.icms.models.Status;
 import com.fdmgroup.icms.models.User;
 import com.fdmgroup.icms.models.UserRole;
 
@@ -75,16 +73,10 @@ public class MainController {
 		return "history";
 	}
 	
-	@RequestMapping(value="/issueDetails/{ID}")
-	public String issueDetailsPage(Model model, @ModelAttribute User user, @PathVariable String ID){		
+	@RequestMapping(value="/issueDetails/{issueId}")
+	public String issueDetailsPage(Model model, @ModelAttribute User user, @PathVariable int issueId){		
 		
-		//TODO * Query Database *
-		
-		Issue issue = (Issue) context.getBean("issue");
-		issue.setAssignedTo(Department.TELECOM);
-		issue.setPriority(Priority.CRITICAL);
-		issue.setStatus(Status.SUBMITTED);
-		issue.setTitle("Pickle Issue");
+		Issue issue = issueService.readIssue(issueId);
 		
 		model.addAttribute("issue", issue);
 		
