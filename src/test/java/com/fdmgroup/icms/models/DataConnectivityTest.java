@@ -137,10 +137,16 @@ public class DataConnectivityTest {
 	
 	@Test
 	public void test_findByUserId_ReturnsEveryIssueInDatabaseWithMatchingUserId() {
-		//TODO SeedDatabase AppConfig doesn't work, it always points to null, it should be fixed and then made a static method
-		List<Issue> retrievedIssues = issueService.findAllByUserId(0);
+		List<Issue> retrievedIssues = issueService.readAllByUserId(0);
 		
 		assertEquals(2, retrievedIssues.size());
+	}
+	
+	@Test
+	public void test_findAll_WhenFindAllIsCalled_ThenAllIssuesAreReturnedFromDatabaseAndAreSortedByDateDesc() {
+		List<Issue> retrievedIssues = issueService.readAll();
+		
+		assertEquals(6, retrievedIssues.size());
 	}
 	
 	// TODO Test sorting retrieved comments by date

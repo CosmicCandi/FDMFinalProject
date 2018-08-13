@@ -45,12 +45,23 @@ public class MainController {
 		List<Issue> issueList = new ArrayList<>();
 		Issue issue = (Issue) context.getBean("issue");
 		
-		issue.setAssignedTo(Department.TELECOM);
-		issue.setPriority(Priority.CRITICAL);
-		issue.setStatus(Status.SUBMITTED);
-		issue.setTitle("Pickle Issue");
-		issueList.add(issue);
-		issueList.add(issue);	
+		switch (user.getRole()) {
+		case GENERAL_ADMINISTRATOR: 
+			issueList = issueService.readAll();
+			break;
+		case DEPARTMENT_ADMINISTRATOR:
+			break;
+		case GENERAL_USER:
+			break;
+		}
+		
+		
+//		issue.setAssignedTo(Department.TELECOM);
+//		issue.setPriority(Priority.CRITICAL);
+//		issue.setStatus(Status.SUBMITTED);
+//		issue.setTitle("Pickle Issue");
+//		issueList.add(issue);
+//		issueList.add(issue);	
 		
 		model.addAttribute("issue", issue);
 		model.addAttribute("issueList", issueList);
