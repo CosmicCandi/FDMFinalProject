@@ -1,5 +1,7 @@
 package com.fdmgroup.icms.models;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,9 @@ public class CommentService {
 		return commentRepo.findOneByCommentId(commentId);
 	}
 	
-	
+	public List<Comment> findAllByIssueIdOrderByDateDesc(int issueId){
+		return commentRepo.findByIssueIdOrderByDateCreatedDesc(issueId);
+	}
+
 	
 }
