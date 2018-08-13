@@ -9,4 +9,5 @@ import com.fdmgroup.icms.models.Issue;
 public interface IssueJpaRepository extends JpaRepository<Issue, Integer> {
 	
 	List<Issue> findBySubmittedByOrderByDateSubmittedDesc(int userId);
+	List<Issue> findAllByOrderByDateSubmittedDesc();
 }

@@ -28,8 +28,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 	
-	@Override
-	public void addInterceptors(InterceptorRegistry registry){
-		registry.addInterceptor(new InputValidationInterceptor());
-	}
+//	@Override
+//	public void addInterceptors(InterceptorRegistry registry){
+//		registry.addInterceptor(new InputValidationInterceptor());
+//	}
 }
