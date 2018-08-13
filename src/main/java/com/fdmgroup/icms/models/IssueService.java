@@ -37,6 +37,10 @@ public class IssueService {
 		return issueRepo.findBySubmittedByOrderByDateSubmittedDesc(userId);
 	}
 	
+	public List<Issue> readAllByDepartment(Department department) {
+		return issueRepo.findByAssignedToOrderByDateSubmittedDesc(department);
+	}
+	
 	@Transactional(readOnly=false)
 	public void deleteAllIssues() {
 		issueRepo.deleteAll();

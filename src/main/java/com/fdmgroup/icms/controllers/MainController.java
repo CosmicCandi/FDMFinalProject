@@ -25,7 +25,7 @@ import com.fdmgroup.icms.models.UserRole;
 public class MainController {
 
 	@Autowired
-	private ApplicationContext context;// = new AnnotationConfigApplicationContext(ApplicationContextConfig.class);
+	private ApplicationContext context;
 	
 	@Autowired
 	private IssueService issueService;
@@ -40,30 +40,19 @@ public class MainController {
 	@RequestMapping(value="issues")
 	public String issuesPage(Model model, User user){
 		
-		//TODO * Query Database *
-		
 		List<Issue> issueList = new ArrayList<>();
-		Issue issue = (Issue) context.getBean("issue");
 		
 		switch (user.getRole()) {
 		case GENERAL_ADMINISTRATOR: 
-			issueList = issueService.readAll();
+			issueList.addAll(issueService.readAll());
 			break;
 		case DEPARTMENT_ADMINISTRATOR:
-			break;
+			issueList.addAll(issueService.readAllByDepartment(user.getDepartmentId()));
 		case GENERAL_USER:
+			issueList.addAll(issueService.readAllByUserId(user.getUserId()));
 			break;
 		}
 		
-		
-//		issue.setAssignedTo(Department.TELECOM);
-//		issue.setPriority(Priority.CRITICAL);
-//		issue.setStatus(Status.SUBMITTED);
-//		issue.setTitle("Pickle Issue");
-//		issueList.add(issue);
-//		issueList.add(issue);	
-		
-		model.addAttribute("issue", issue);
 		model.addAttribute("issueList", issueList);
 		
 		return "issues";
