@@ -24,12 +24,16 @@ public class IssueService {
 		return issueRepo.findOne(issueId);
 	}
 	
+	public List<Issue> readAll() {
+		return issueRepo.findAllByOrderByDateSubmittedDesc();
+	}
+	
 	@Transactional(readOnly=false)
 	public void removeIssue(int issueId){
 		issueRepo.delete(issueId);
 	}
 
-	public List<Issue> findAllByUserId(int userId) {
+	public List<Issue> readAllByUserId(int userId) {
 		return issueRepo.findBySubmittedByOrderByDateSubmittedDesc(userId);
 	}
 	

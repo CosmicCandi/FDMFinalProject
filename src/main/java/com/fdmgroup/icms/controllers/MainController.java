@@ -45,6 +45,7 @@ public class MainController {
 		List<Issue> issueList = new ArrayList<>();
 		Issue issue = (Issue) context.getBean("issue");
 		
+<<<<<<< HEAD
 		issue.setAssignedTo(Department.TELECOM);
 		issue.setPriority(Priority.CRITICAL);
 		issue.setStatus(Status.SUBMITTED);
@@ -52,6 +53,25 @@ public class MainController {
 		issueList.add(issue);
 		issueList.add(issue);
 		issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);
+=======
+		switch (user.getRole()) {
+		case GENERAL_ADMINISTRATOR: 
+			issueList = issueService.readAll();
+			break;
+		case DEPARTMENT_ADMINISTRATOR:
+			break;
+		case GENERAL_USER:
+			break;
+		}
+		
+		
+//		issue.setAssignedTo(Department.TELECOM);
+//		issue.setPriority(Priority.CRITICAL);
+//		issue.setStatus(Status.SUBMITTED);
+//		issue.setTitle("Pickle Issue");
+//		issueList.add(issue);
+//		issueList.add(issue);	
+>>>>>>> a8ac032424d4172aa91e666db7f7c6e691585ad6
 		
 		model.addAttribute("issue", issue);
 		model.addAttribute("issueList", issueList);

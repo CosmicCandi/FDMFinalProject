@@ -24,7 +24,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 	@Profile("test")  								// this profile name is used in the "test" version of the code
 	public class TestJpaConfig {
 
-		
 		@Bean
 		public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 			LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
