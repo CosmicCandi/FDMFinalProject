@@ -41,6 +41,7 @@ public class IssueService {
 	public void deleteAllIssues() {
 		issueRepo.deleteAll();
 	}
+
 }
 	
 	
