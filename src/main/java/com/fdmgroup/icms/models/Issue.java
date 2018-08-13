@@ -26,7 +26,7 @@ public class Issue {
 		this.dateSubmitted = Calendar.getInstance().getTime();
 	}
 	
-	public Issue(String title, String userDescription, /*List<Comment> comments,*/ Department assignedTo, Long submittedBy, Status status, 
+	public Issue(String title, String userDescription, /*List<Comment> comments,*/ Department assignedTo, int submittedBy, Status status, 
 			     Priority priority, Date dateResolved){
 		this.title = title;
 		this.userDescription = userDescription;
@@ -47,7 +47,7 @@ public class Issue {
 	@Column(name="title")
 	private String title;
 	
-	@Column(name="user_description")
+	@Column(name="user_description", length = 3500)
 	private String userDescription;
 	
 	@OneToMany(mappedBy="issue", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
@@ -69,7 +69,7 @@ public class Issue {
 	private Department assignedTo;
 	
 	@Column(name="submitted_by")
-	private Long submittedBy;
+	private int submittedBy;
 	
 	@Column(name="status")
 	private Status status;
@@ -116,12 +116,12 @@ public class Issue {
 		this.assignedTo = assignedTo;
 	}
 
-	public Long getSubmittedBy() {
+	public int getSubmittedBy() {
 		return submittedBy;
 	}
 
-	public void setSubmittedBy(Long submittedBy) {
-		this.submittedBy = submittedBy;
+	public void setSubmittedBy(int userId) {
+		this.submittedBy = userId;
 	}
 
 	public Status getStatus() {

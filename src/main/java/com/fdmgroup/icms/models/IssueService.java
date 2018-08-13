@@ -1,14 +1,12 @@
 package com.fdmgroup.icms.models;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fdmgroup.icms.appconfig.TestJpaConfig;
 import com.fdmgroup.icms.repositories.IssueJpaRepository;
-
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 @Service("issueService")
 @Transactional(readOnly=true)
@@ -23,7 +21,7 @@ public class IssueService {
 	}
 	
 	public Issue readIssue(int issueId){
-		return issueRepo.findOneByIssueId(issueId);
+		return issueRepo.findOne(issueId);
 	}
 	
 	@Transactional(readOnly=false)
@@ -31,6 +29,14 @@ public class IssueService {
 		issueRepo.delete(issueId);
 	}
 
+	public List<Issue> findAllByUserId(int userId) {
+		return issueRepo.findBySubmittedByOrderByDateSubmittedDesc(userId);
+	}
+	
+	@Transactional(readOnly=false)
+	public void deleteAllIssues() {
+		issueRepo.deleteAll();
+	}
 }
 	
 	
