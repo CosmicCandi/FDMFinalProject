@@ -1,1 +1,102 @@
-@CHARSET "ISO-8859-1";
+.content .issueInfo {
+	display: inline-block;
+    width: 40%;
+    margin-right: 9%;
+    text-align: left;
+}
+
+.content .submitterInfo {
+	display: inline-block;
+    width: 40%;
+    text-align: left;
+    position: relative;
+    bottom: 102px;
+}
+
+.content .description {
+	overflow: auto;
+	max-height: 150px;
+}
+
+.content .commentInfo {
+	overflow: auto;
+	max-height: 260px;
+}
+
+.content .buttonOptions {
+	margin-top: 30px;
+}
+
+.content button {
+	font-size: 90%;
+	width: auto;
+	text-align: center;
+	margin: 0px 2%;
+	padding: 0px 20px;
+	border: none;
+	cursor: pointer;
+	background: #3498DB;
+	color: white;
+	border-radius: 3%;
+}
+
+/* Comment Table */
+
+.content .table {
+	width: 60%;
+	margin: auto;
+	border: solid;
+	border-width: 0.5px;
+	border-color: lightgray;
+	max-height: 250px;
+	overflow-y: scroll;
+	font-size: 80%;
+}
+
+.content table {
+	margin: auto;
+	border-collapse: collapse;
+}
+
+.content table tr {
+	height: 50px;
+}
+
+.content table td {
+	padding: 0 4%;
+	width: 0%;
+}
+
+.content .labels {
+	border-bottom: solid;
+	border-width: 0.5px;
+}
+
+.content table tr .commentRow {
+	text-align: left;
+}
+
+.content table tr:nth-child(even) {
+    background-color: #d9d9d9;
+}
+
+.content .tableHeader {
+	width: 60%;
+	margin: auto;
+	font-size: 80%;
+}
+
+.content .tableHeader table th {
+	padding: 0 3%;
+	width: 2%;
+	position: relative;
+	right: 13%;
+}
+
+.content .tableHeader table #comment {
+	right: 46%;
+}
+
+.content .tableHeader table #commentDate {
+	right: 31%
+}

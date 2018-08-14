@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fdmgroup.icms.models.Comment;
 import com.fdmgroup.icms.models.Department;
 import com.fdmgroup.icms.models.Issue;
 import com.fdmgroup.icms.models.IssueService;
@@ -52,17 +53,16 @@ public class MainController {
 			break;
 		}
 		
+
 		model.addAttribute("issueList", issueList);
 		
 		return "issues";
 	}
 	
 	@RequestMapping(value="newIssue")
-	public String newIssuePage(Model model, Issue newIssue){
+	public String newIssuePage(Model model){
 		
 		model.addAttribute("newIssue", (Issue) context.getBean("issue"));
-		
-		issueService.createOrUpdateIssue(newIssue);
 		
 		model.addAttribute("departmentList", Department.ticketHandlers);
 		return "newIssue";
@@ -74,6 +74,7 @@ public class MainController {
 		return "history";
 	}
 	
+
 	@RequestMapping(value="/issueDetails/{issueId}")
 	public String issueDetailsPage(Model model, @ModelAttribute User user, @PathVariable int issueId){		
 		
@@ -89,6 +90,14 @@ public class MainController {
 		session.invalidate();
 		
 		return "login";
+	}
+	
+	@RequestMapping(value="createIssue")
+	public String createIssuePage(Model model, Issue issue) {
+		
+		issueService.createOrUpdateIssue(issue);
+		
+		return "issues";
 	}
 	
 }

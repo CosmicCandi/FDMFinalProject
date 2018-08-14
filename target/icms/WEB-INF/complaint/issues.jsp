@@ -52,42 +52,81 @@
 	
 	</header>
 
+	
 	<section class="content">
-	<section>
-	<p>These are your issues:</p>
-	<section>
-	<p>Issue ID</p>
-	<p>Title</p>
-	<p>Date Submitted</p>
-	<p>Status</p>
-	<p>Assigned To</p>
-	<p>Priority</p>
-	</section>
-
-	<section> <c:forEach items="${issueList}" var="i">
-		<a href="<c:url value="issueDetails" />/${i.issueId}" class="issueButtons">
-			<section class="buttonSection">
-				<p class="id">${i.issueId}</p>
-				<p class="title">${i.title}</p>
-				<p class="date">${i.dateSubmitted}</p>
-				<p class="status">${i.status}</p>
-				<p class="assignee">${i.assignedTo}</p>
-				<p class="priority">${i.priority}</p>
-			</section>
-		</a>
-	</c:forEach> 
-	</section>
+	
 	<button onclick="location.href='<c:url value="newIssue" />'"
 		type="button">
 		<p>+ New Issue</p>
 	</button>
 
+	<input type="text" id="search" onkeyup="searchTable()" placeholder="Search...">
+
 	<button onclick="location.href='<c:url value="history" />'"
 		type="button">
 		<p>History</p>
 	</button>
+	
+	
+	
+	<div class="tableHeader">
+		<table>
+			<tr class="labels">
+				<th id="id">Issue Id</th>
+				<th id="title">Title</th>
+				<th id="date">Date Submitted</th>
+				<th id="status">Status</th>
+				<th id="assignee">Assigned To</th>
+				<th id="priority">Priority</th>
+			</tr>
+		</table>
+	</div>
+	<div class="table">
+	<table id="issueTable">
+	
+	<c:forEach items="${issueList}" var="i">
+		<tr onclick="details('<c:url value="issueDetails" />/${i.issueId}');" id="issueRow">
+			<td>${i.issueId}</td>
+			<td>${i.title}</td>
+			<td>${i.dateSubmitted}</td>
+			<td>${i.status}</td>
+			<td>${i.assignedTo}</td>
+			<td>${i.priority}</td>
+		</tr>		
+	</c:forEach>
+	</table>
+	</div>
+	
+	<script>
+		function details(url) {
+	    	document.location.href = url;
+	    }
+		
+		function searchTable() {
+		    var input, filter, found, table, tr, td, i, j;
+		    input = document.getElementById("search");
+		    filter = input.value.toUpperCase();
+		    table = document.getElementById("issueTable");
+		    tr = table.getElementsByTagName("tr");
+		    for (i = 0; i < tr.length; i++) {
+		        td = tr[i].getElementsByTagName("td");
+		        for (j = 0; j < td.length; j++) {
+		            if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+		                found = true;
+		            }
+		        }
+		        if (found) {
+		            tr[i].style.display = "";
+		            found = false;
+		        } else {
+		            tr[i].style.display = "none";
+		        }
+		    }
+		}
+	</script>
+	
 	</section>
-	<footer class="content foot">
+	<footer class="content" id="foot">
 	<p>&copy; 2018 - POS Masters</p>
 	</footer>
 </body>
