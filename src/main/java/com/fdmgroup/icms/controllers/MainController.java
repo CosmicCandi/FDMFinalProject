@@ -16,8 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fdmgroup.icms.models.Department;
 import com.fdmgroup.icms.models.Issue;
 import com.fdmgroup.icms.models.IssueService;
-import com.fdmgroup.icms.models.Priority;
-import com.fdmgroup.icms.models.Status;
 import com.fdmgroup.icms.models.User;
 import com.fdmgroup.icms.models.UserRole;
 
@@ -25,7 +23,7 @@ import com.fdmgroup.icms.models.UserRole;
 public class MainController {
 
 	@Autowired
-	private ApplicationContext context;// = new AnnotationConfigApplicationContext(ApplicationContextConfig.class);
+	private ApplicationContext context;
 	
 	@Autowired
 	private IssueService issueService;
@@ -40,32 +38,33 @@ public class MainController {
 	@RequestMapping(value="issues")
 	public String issuesPage(Model model, User user){
 		
-		//TODO * Query Database *
-		
 		List<Issue> issueList = new ArrayList<>();
-		Issue issue = (Issue) context.getBean("issue");
 		
-		issue.setAssignedTo(Department.TELECOM);
-		issue.setPriority(Priority.CRITICAL);
-		issue.setStatus(Status.SUBMITTED);
-		issue.setTitle("Pickle Issue");
-		issueList.add(issue);
-		issueList.add(issue);	
+		switch (user.getRole()) {
+		case GENERAL_ADMINISTRATOR: 
+			issueList.addAll(issueService.readAll());
+			break;
+		case DEPARTMENT_ADMINISTRATOR:
+			issueList.addAll(issueService.readAllByDepartment(user.getDepartmentId()));
+		case GENERAL_USER:
+			issueList.addAll(issueService.readAllByUserId(user.getUserId()));
+			break;
+		}
 		
-		model.addAttribute("issue", issue);
+
 		model.addAttribute("issueList", issueList);
 		
 		return "issues";
 	}
 	
 	@RequestMapping(value="newIssue")
-	public String newIssuePage(Model model, Issue newIssue){
+	public String newIssuePage(Model model){
 		
-		model.addAttribute("newIssue", (Issue) context.getBean("issue"));
-		
+		Issue newIssue = (Issue) context.getBean("issue");
+		model.addAttribute("newIssue", newIssue);
 		issueService.createIssue(newIssue);
-		
 		model.addAttribute("departmentList", Department.ticketHandlers);
+		
 		return "newIssue";
 	}
 	
@@ -75,17 +74,11 @@ public class MainController {
 		return "history";
 	}
 	
-	@RequestMapping(value="/issueDetails/{ID}")
-	public String issueDetailsPage(Model model, @ModelAttribute User user, @PathVariable String ID){		
+
+	@RequestMapping(value="/issueDetails/{issueId}")
+	public String issueDetailsPage(Model model, @ModelAttribute User user, @PathVariable int issueId){		
 		
-		//TODO * Query Database *
-		
-		Issue issue = (Issue) context.getBean("issue");
-		issue.setAssignedTo(Department.TELECOM);
-		issue.setPriority(Priority.CRITICAL);
-		issue.setStatus(Status.SUBMITTED);
-		issue.setTitle("Pickle Issue");
-		
+		Issue issue = issueService.readIssue(issueId);
 		model.addAttribute("issue", issue);
 		
 		return "issueDetails";
@@ -97,6 +90,14 @@ public class MainController {
 		session.invalidate();
 		
 		return "login";
+	}
+	
+	@RequestMapping(value="createIssue")
+	public String createIssuePage(Model model, Issue issue) {
+		
+		issueService.createIssue(issue);
+		
+		return "issues";
 	}
 	
 }

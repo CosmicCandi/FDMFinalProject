@@ -1,5 +1,7 @@
 package com.fdmgroup.icms.models;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,10 @@ public class IssueService {
 		return issueRepo.findOne(issueId);
 	}
 	
+	public List<Issue> readAll() {
+		return issueRepo.findAllByOrderByDateSubmittedDesc();
+	}
+	
 	@Transactional(readOnly=false)
 	public void removeIssue(int issueId){
 		issueRepo.delete(issueId);
@@ -30,6 +36,19 @@ public class IssueService {
 	@Transactional(readOnly=false)
 	public void updateIssue(Issue issueToUpdate){
 		issueRepo.save(issueToUpdate);
+	}
+
+	public List<Issue> readAllByUserId(int userId) {
+		return issueRepo.findBySubmittedByOrderByDateSubmittedDesc(userId);
+	}
+	
+	public List<Issue> readAllByDepartment(Department department) {
+		return issueRepo.findByAssignedToOrderByDateSubmittedDesc(department);
+	}
+	
+	@Transactional(readOnly=false)
+	public void deleteAllIssues() {
+		issueRepo.deleteAll();
 	}
 }
 	

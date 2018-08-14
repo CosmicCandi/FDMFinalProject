@@ -1,0 +1,2 @@
+This makes GIT happy and keeps the folder from disappearing.
+The quick brown fox jumps over the lazy dog.

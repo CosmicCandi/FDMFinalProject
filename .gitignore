@@ -33,4 +33,8 @@ local.properties
 
 *.jsdtscope
 *.lst
+<<<<<<< HEAD
 test/
+=======
+target/
+>>>>>>> 3e6dc308a45614bda4a3762921bd91c3dfde3fa8

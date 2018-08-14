@@ -10,7 +10,7 @@
 	http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 	
 	<context:annotation-config/>
-	<bean class="com.fdmgroup.icms.classes.ApplicationContextConfig"/>
+	<bean class="com.fdmgroup.icms.appconfig.ApplicationContextConfig"/>
 	
 	
 </beans>

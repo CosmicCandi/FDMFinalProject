@@ -8,7 +8,6 @@ import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
-
 import com.fdmgroup.icms.controllers.InputValidationInterceptor;
 
 @Configuration
@@ -28,8 +27,14 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		return resolver;
 	}
 	
+	
+	@Bean
+	public InputValidationInterceptor inputValidationInterceptor() {
+		return new InputValidationInterceptor();
+	}
+	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry){
-		registry.addInterceptor(new InputValidationInterceptor());
+		registry.addInterceptor(inputValidationInterceptor()).addPathPatterns("/issues");
 	}
 }

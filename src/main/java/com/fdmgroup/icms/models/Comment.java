@@ -36,7 +36,7 @@ public class Comment {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="comment_id_seq")
 	private int commentId;
 	
-	@Column(name="user_comment")
+	@Column(name="user_comment", length = 3500)
 	private String userComment;
 		
 	@ManyToOne
