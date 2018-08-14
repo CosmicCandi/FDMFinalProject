@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.fdmgroup.icms.models.Department;
 import com.fdmgroup.icms.models.Issue;
 import com.fdmgroup.icms.models.IssueService;
+import com.fdmgroup.icms.models.SeedDatabase;
 import com.fdmgroup.icms.models.User;
 import com.fdmgroup.icms.models.UserRole;
 
@@ -77,7 +78,6 @@ public class MainController {
 	public String issueDetailsPage(Model model, @ModelAttribute User user, @PathVariable int issueId){		
 		
 		Issue issue = issueService.readIssue(issueId);
-		
 		model.addAttribute("issue", issue);
 		
 		return "issueDetails";

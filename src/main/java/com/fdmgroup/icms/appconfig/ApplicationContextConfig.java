@@ -44,5 +44,4 @@ public class ApplicationContextConfig {
 	public SeedDatabase seedDatabase() {
 		return new SeedDatabase();
 	}
-	
 }

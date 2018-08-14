@@ -106,7 +106,7 @@ public class DataConnectivityTest {
 		userService.createOrUpdateUser(user);
 		
 		User retrievedUser = userService.readUser("civilwardabest");
-		assertEquals(user.getUsername(), retrievedUser.getUsername());
+		assertEquals(user.getEmail(), retrievedUser.getEmail());
 	}
 	
 	@Test
