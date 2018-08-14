@@ -39,7 +39,7 @@ public class Comment {
 	@Column(name="user_comment")
 	private String userComment;
 		
-	@ManyToOne(cascade=CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name="issue_id")
 	private Issue issue;
 	

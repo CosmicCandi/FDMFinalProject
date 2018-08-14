@@ -13,17 +13,12 @@ import com.fdmgroup.icms.repositories.IssueJpaRepository;
 @Service
 @Transactional(readOnly = true)
 public class CommentService {
-
-	List<Comment> comments = new ArrayList<>();
 	
 	@Autowired
-	Issue issue;
-	
+	private Issue issue;
+			
 	@Autowired
-	public IssueJpaRepository issueRepo;
-		
-	@Autowired
-	public CommentJpaRepository commentRepo;
+	private CommentJpaRepository commentRepo;
 	
 	@Transactional(readOnly = false)
 	public void createComment(Comment comment){

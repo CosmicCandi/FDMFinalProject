@@ -69,7 +69,7 @@ public class DataConnectivityTest {
 	@Test
 	public void test_ReadUser_WhenUsernameIsPassed_ReturnsProperUser(){
 		User user = (User) context.getBean("user");
-		user.setUsername("civilwardabest");
+		user.setUsername("civilwardagreatest");
 		user.setPassword("Playground1");
 		user.setEmail("harley@halley.com");
 		user.setDepartmentId(Department.WEB_APPS);
@@ -77,7 +77,7 @@ public class DataConnectivityTest {
 		
 		userService.createUser(user);
 		
-		User retrievedUser = userService.readUser("civilwardabest");
+		User retrievedUser = userService.readUser("civilwardagreatest");
 		assertEquals(user.getUsername(), retrievedUser.getUsername());
 	}
 	
@@ -108,9 +108,9 @@ public class DataConnectivityTest {
 		comment3.setIssueId(issue);
 		comment3.setUserComment("Written directly to database");
 		comment3.setUserId(0);
-		commentService.createComment(comment3);
+		issue.addComment(comment3);
 		
-		issueService.createIssue(issue);
+		issueService.updateIssue(issue);
 		
 		Issue retrievedIssue = issueService.readIssue(issue.getIssueId());
 		
@@ -192,14 +192,14 @@ public class DataConnectivityTest {
 	@Test
 	public void test_WhenAUserGetsUpdated_UpdatedValuesAreReturned(){
 		User user = (User) context.getBean("user");
-		user.setUsername("civilwardabest");
+		user.setUsername("civilwardaworst");
 		user.setPassword("Playground1");
 		user.setEmail("harley@halley.com");
 		user.setDepartmentId(Department.WEB_APPS);
 		user.setRole(UserRole.GENERAL_USER);
 		
-		User copyOfHarley = userService.readUser("civilwardabest");
 		userService.createUser(user);
+		User copyOfHarley = userService.readUser("civilwardaworst");
 		
 		user.setDepartmentId(Department.HELP_DESK);
 		user.setUsername("helpdeskisme");
