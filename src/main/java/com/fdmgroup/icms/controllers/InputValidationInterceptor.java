@@ -65,28 +65,6 @@ public class InputValidationInterceptor extends HandlerInterceptorAdapter {
 
 				return false;
 			}
-			
-//			boolean userExists = false;
-//			for (User u : userList) {
-//				if (username.equals(u.getUsername())) {
-//					if (password.equals(u.getPassword())) {
-//						userExists = true;
-//					}
-//				}
-//			}
-//
-//			if (!userExists) {
-//				request.setAttribute("Error_Message", "Username and Password combination does not exist.");
-//				request.setAttribute("Display_Message", "block");
-//
-//				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/complaint/login.jsp");
-//				rd.forward(request, response);
-//
-//				return false;
-//
-//			} else {
-//				return true;
-//			}
 		}
 	}
 
