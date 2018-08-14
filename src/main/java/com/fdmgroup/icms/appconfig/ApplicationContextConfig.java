@@ -11,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.fdmgroup.icms.models.Comment;
 import com.fdmgroup.icms.models.Issue;
-import com.fdmgroup.icms.models.IssueService;
 import com.fdmgroup.icms.models.User;
 
 @Configuration
@@ -39,5 +38,5 @@ public class ApplicationContextConfig {
 	public User user(){
 		return new User();
 	}
-	
+		
 }

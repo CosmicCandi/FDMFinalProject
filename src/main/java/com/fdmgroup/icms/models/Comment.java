@@ -3,6 +3,7 @@ package com.fdmgroup.icms.models;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name="icms_issue_comment")
@@ -36,11 +39,12 @@ public class Comment {
 	@Column(name="user_comment")
 	private String userComment;
 		
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	@JoinColumn(name="issue_id")
 	private Issue issue;
 	
 	@Column(name="date_created")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateCreated;
 	
 	@Column(name="user_id")

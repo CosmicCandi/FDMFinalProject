@@ -12,7 +12,7 @@ import org.springframework.web.servlet.view.JstlView;
 import com.fdmgroup.icms.controllers.InputValidationInterceptor;
 
 @Configuration
-@ComponentScan(basePackages = { "com.fdmgroup.icms.classes", "com.fdmgroup.icms.models", "com.fdmgroup.repositories", "com.fdmgroup.icms.controllers", "com.fdmgroup.icms.enums", "com.fdmgroup.icms.interceptors" })
+@ComponentScan(basePackages = { "com.fdmgroup.icms.appconfig", "com.fdmgroup.icms.models", "com.fdmgroup.repositories", "com.fdmgroup.icms.controllers" })
 @EnableWebMvc
 public class WebConfig extends WebMvcConfigurerAdapter {
 	

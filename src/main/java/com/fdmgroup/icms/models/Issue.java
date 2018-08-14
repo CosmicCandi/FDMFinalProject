@@ -15,22 +15,25 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+
 
 @Entity
 @Table(name="icms_issue")
 @SequenceGenerator(name="issue_id_seq", initialValue=1, allocationSize=1 )
 public class Issue {
-		
+
 	public Issue(){
 		comments = new ArrayList<>();
 		this.dateSubmitted = Calendar.getInstance().getTime();
 	}
 	
-	public Issue(String title, String userDescription, /*List<Comment> comments,*/ Department assignedTo, Long submittedBy, Status status, 
+	public Issue(String title, String userDescription, Department assignedTo, int submittedBy, Status status, 
 			     Priority priority, Date dateResolved){
 		this.title = title;
 		this.userDescription = userDescription;
-//		this.comments = comments;
 		this.assignedTo = assignedTo;
 		this.submittedBy = submittedBy;
 		this.status = status;
@@ -53,23 +56,11 @@ public class Issue {
 	@OneToMany(mappedBy="issue", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Comment> comments;
 
-	public List<Comment> getComments() {
-		return comments;
-	}
-	
-	public void addComment(Comment comment) {
-		comments.add(comment);
-	}
-	
-	public void setComments(List<Comment> comments) {
-		this.comments = comments;
-	}
-	
 	@Column(name="department")
 	private Department assignedTo;
 	
 	@Column(name="submitted_by")
-	private Long submittedBy;
+	private int submittedBy;
 	
 	@Column(name="status")
 	private Status status;
@@ -78,9 +69,11 @@ public class Issue {
 	private Priority priority;
 	
 	@Column(name="date_submitted")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateSubmitted;
 	
 	@Column(name="date_resolved")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateResolved;
 
 	public int getIssueId() {
@@ -107,7 +100,18 @@ public class Issue {
 		this.userDescription = userDescription;
 	}
 
-
+	public List<Comment> getComments() {
+		return comments;
+	}
+	
+	public void addComment(Comment comment) {
+		comments.add(comment);
+	}
+	
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
+	}
+	
 	public Department getAssignedTo() {
 		return assignedTo;
 	}
@@ -116,11 +120,11 @@ public class Issue {
 		this.assignedTo = assignedTo;
 	}
 
-	public Long getSubmittedBy() {
+	public int getSubmittedBy() {
 		return submittedBy;
 	}
 
-	public void setSubmittedBy(Long submittedBy) {
+	public void setSubmittedBy(int submittedBy) {
 		this.submittedBy = submittedBy;
 	}
 

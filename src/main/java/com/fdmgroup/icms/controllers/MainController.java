@@ -63,7 +63,7 @@ public class MainController {
 		
 		model.addAttribute("newIssue", (Issue) context.getBean("issue"));
 		
-		issueService.createOrUpdateIssue(newIssue);
+		issueService.createIssue(newIssue);
 		
 		model.addAttribute("departmentList", Department.ticketHandlers);
 		return "newIssue";

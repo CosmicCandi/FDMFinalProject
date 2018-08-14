@@ -14,7 +14,7 @@ public class UserService {
 	private UserJpaRepository userRepo;
 	
 	@Transactional(readOnly=false)
-	public void createOrUpdateUser(User user){
+	public void createUser(User user){
 		userRepo.save(user);
 	}
 	
@@ -26,5 +26,10 @@ public class UserService {
 	public void removeUser(int userId){
 		userRepo.delete(userId);
 	}	
+	
+	@Transactional(readOnly=false)
+	public void updateUser(User userToUpdate){
+		userRepo.save(userToUpdate);
+	}
 	
 }

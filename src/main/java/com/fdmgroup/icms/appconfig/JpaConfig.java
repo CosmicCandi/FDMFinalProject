@@ -18,7 +18,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 	@Configuration
-	@ComponentScan(basePackages= {"com.fdmgroup.icms.classes", "com.fdmgroup.icms.controllers", "com.fdmgroup.icms.enums", "com.fdmgroup.icms.models", "com.fdmgroup.icms.repositories" })
+	@ComponentScan(basePackages= {"com.fdmgroup.icms.appconfig", "com.fdmgroup.icms.controllers", "com.fdmgroup.icms.models", "com.fdmgroup.icms.repositories" })
 	@EnableJpaRepositories("com.fdmgroup.icms.repositories")
 	@EnableTransactionManagement
 	@Profile("live")  // this profile name is used in the "production" version of the code
@@ -28,7 +28,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 		public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
 			LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 			em.setDataSource(dataSource());
-			em.setPackagesToScan(new String[] { "com.fdmgroup.icms.classes", "com.fdmgroup.icms.controllers", "com.fdmgroup.icms.enums", "com.fdmgroup.icms.models", "com.fdmgroup.icms.repositories" });
+			em.setPackagesToScan(new String[] { "com.fdmgroup.icms.appconfig", "com.fdmgroup.icms.controllers", "com.fdmgroup.icms.models", "com.fdmgroup.icms.repositories" });
 
 			JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 			em.setJpaVendorAdapter(vendorAdapter);

@@ -18,10 +18,10 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 	@Configuration
-	@ComponentScan(basePackages= {"com.fdmgroup.icms.appconfig", "com.fdmgroup.icms.models", "com.fdmgroup.icms.repositories" })
+	@ComponentScan(basePackages= {"com.fdmgroup.icms.appconfig", "com.fdmgroup.icms.controllers", "com.fdmgroup.icms.models", "com.fdmgroup.icms.repositories" })
 	@EnableJpaRepositories("com.fdmgroup.icms.repositories")
 	@EnableTransactionManagement
-	@Profile("test")  								// this profile name is used in the "test" version of the code
+	@Profile("test")  								// Used for Test instance
 	public class TestJpaConfig {
 
 		
@@ -54,9 +54,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 			
 			//change this property to "update" to have the DB persist when running the app multiple times
 			//alternatively, "create-drop" will drop the tables, create them at startup, then drop them again on shutdown
-			properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+			properties.setProperty("hibernate.hbm2ddl.auto", "create");
 			
-			//since this is the "production" environment, we won't show the SQL being run during database processes
+			//since this is the "test" environment, we WILL show the SQL being run during database processes
 			properties.setProperty("hibernate.show_sql", "true");
 			return properties;
 		}
