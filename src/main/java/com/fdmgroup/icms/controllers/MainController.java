@@ -17,8 +17,7 @@ import com.fdmgroup.icms.models.Comment;
 import com.fdmgroup.icms.models.Department;
 import com.fdmgroup.icms.models.Issue;
 import com.fdmgroup.icms.models.IssueService;
-import com.fdmgroup.icms.models.Priority;
-import com.fdmgroup.icms.models.Status;
+import com.fdmgroup.icms.models.SeedDatabase;
 import com.fdmgroup.icms.models.User;
 import com.fdmgroup.icms.models.UserRole;
 
@@ -26,7 +25,7 @@ import com.fdmgroup.icms.models.UserRole;
 public class MainController {
 
 	@Autowired
-	private ApplicationContext context;// = new AnnotationConfigApplicationContext(ApplicationContextConfig.class);
+	private ApplicationContext context;
 	
 	@Autowired
 	private IssueService issueService;
@@ -41,30 +40,20 @@ public class MainController {
 	@RequestMapping(value="issues")
 	public String issuesPage(Model model, User user){
 		
-		//TODO * Query Database *
-		
 		List<Issue> issueList = new ArrayList<>();
-		Issue issue = (Issue) context.getBean("issue");
 		
-		issue.setAssignedTo(Department.TELECOM);
-		issue.setPriority(Priority.CRITICAL);
-		issue.setStatus(Status.SUBMITTED);
-		issue.setTitle("Pickle Issue");
-		issueList.add(issue);
-		issueList.add(issue);
-		issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);issueList.add(issue);
+		switch (user.getRole()) {
+		case GENERAL_ADMINISTRATOR: 
+			issueList.addAll(issueService.readAll());
+			break;
+		case DEPARTMENT_ADMINISTRATOR:
+			issueList.addAll(issueService.readAllByDepartment(user.getDepartmentId()));
+		case GENERAL_USER:
+			issueList.addAll(issueService.readAllByUserId(user.getUserId()));
+			break;
+		}
+		
 
-//		switch (user.getRole()) {
-//		case GENERAL_ADMINISTRATOR: 
-//			issueList = issueService.readAll();
-//			break;
-//		case DEPARTMENT_ADMINISTRATOR:
-//			break;
-//		case GENERAL_USER:
-//			break;
-//		}	
-		
-		model.addAttribute("issue", issue);
 		model.addAttribute("issueList", issueList);
 		
 		return "issues";
@@ -85,42 +74,11 @@ public class MainController {
 		return "history";
 	}
 	
-	@RequestMapping(value="/issueDetails/{ID}")
-	public String issueDetailsPage(Model model, @ModelAttribute User user, @PathVariable String ID){		
+
+	@RequestMapping(value="/issueDetails/{issueId}")
+	public String issueDetailsPage(Model model, @ModelAttribute User user, @PathVariable int issueId){		
 		
-		//TODO * Query Database *
-		
-		Issue issue = (Issue) context.getBean("issue");
-		issue.setAssignedTo(Department.TELECOM);
-		issue.setPriority(Priority.CRITICAL);
-		issue.setStatus(Status.SUBMITTED);
-		issue.setTitle("Pickle Issue");
-		issue.setUserDescription("User description User description User description User description User description User description User description User description User descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser descriptionUser description");
-		
-		User submitter = (User) context.getBean("user");
-		submitter.setFirstName("Steven");
-		submitter.setLastName("Smith");
-		submitter.setEmail("steve_s@email.com");
-		submitter.setDepartmentId(Department.ACCOUNTING);
-		
-		List<Comment> commentList = new ArrayList<>();
-		
-		Comment comment = (Comment) context.getBean("comment");
-		comment.setUserComment("This is a comment");
-		Comment comment2 = (Comment) context.getBean("comment");
-		comment2.setUserComment("This is a comment also");
-		Comment comment3 = (Comment) context.getBean("comment");
-		comment3.setUserComment("This is a comment too");
-		Comment comment4 = (Comment) context.getBean("comment");
-		comment4.setUserComment("This is a comment This is a comment This is a comment This is a comment This is a comment This is a comment");
-		
-		commentList.add(comment);
-		commentList.add(comment2);
-		commentList.add(comment3);
-		commentList.add(comment4);
-		
-		model.addAttribute("submitter", submitter);
-		model.addAttribute("commentList", commentList);
+		Issue issue = issueService.readIssue(issueId);
 		model.addAttribute("issue", issue);
 		
 		return "issueDetails";

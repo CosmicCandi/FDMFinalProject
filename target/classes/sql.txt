@@ -5,6 +5,59 @@ GRANT CONNECT, RESOURCE TO test;
 GRANT CREATE SESSION TO test;
 ALTER USER test QUOTA 10M ON system;
 
+#Create Users for test, MAKE SURE THIS IS RUN AS THE test USER
+
+INSERT INTO icms_user
+VALUES (1, 'WEB_SERVICES', 'harley@halley.com', 'Harley', 'Halley', 'password', 'GENERAL_USER', 'civilwardabest');
+
+INSERT INTO icms_user
+VALUES (15, 'HELP_DESK', 'hdadmin@icms.com', 'Roymond', 'Horsewingding', '12345678', 'DEPARTMENT_ADMINISTRATOR', 'roymondhd');
+
+INSERT INTO icms_user
+VALUES (101, 'WEB_APPS', 'genadmin@icms.com', 'Tom', 'Bombadil', 'section', 'GENERAL_ADMINISTRATOR', 'pointless');
+
+
+#Drop All Tables/Views
+BEGIN
+   FOR cur_rec IN (SELECT object_name, object_type
+                     FROM user_objects
+                    WHERE object_type IN
+                             ('TABLE',
+                              'VIEW',
+                              'PROCEDURE',
+                              'FUNCTION',
+                              'SEQUENCE'
+                             ))
+   LOOP
+      BEGIN
+         IF cur_rec.object_type = 'TABLE'
+         THEN
+            EXECUTE IMMEDIATE    'DROP '
+                              || cur_rec.object_type
+                              || ' "'
+                              || cur_rec.object_name
+                              || '" CASCADE CONSTRAINTS';
+         ELSE
+            EXECUTE IMMEDIATE    'DROP '
+                              || cur_rec.object_type
+                              || ' "'
+                              || cur_rec.object_name
+                              || '"';
+         END IF;
+      EXCEPTION
+         WHEN OTHERS
+         THEN
+            DBMS_OUTPUT.put_line (   'FAILED: DROP '
+                                  || cur_rec.object_type
+                                  || ' "'
+                                  || cur_rec.object_name
+                                  || '"'
+                                 );
+      END;
+   END LOOP;
+END;
+/
+
 #Create Users for production, MAKE SURE THIS IS RUN FOR THE PRODUCTION ENVIRONMENT
 
 INSERT INTO icms_user

@@ -8,6 +8,8 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -66,15 +68,18 @@ public class Issue {
 	}
 	
 	@Column(name="department")
+	@Enumerated(EnumType.STRING)
 	private Department assignedTo;
 	
 	@Column(name="submitted_by")
 	private int submittedBy;
 	
 	@Column(name="status")
+	@Enumerated(EnumType.STRING)
 	private Status status;
 	
 	@Column(name="priority")
+	@Enumerated(EnumType.STRING)
 	private Priority priority;
 	
 	@Column(name="date_submitted")

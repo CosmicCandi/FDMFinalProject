@@ -106,7 +106,7 @@ public class DataConnectivityTest {
 		userService.createOrUpdateUser(user);
 		
 		User retrievedUser = userService.readUser("civilwardabest");
-		assertEquals(user.getUsername(), retrievedUser.getUsername());
+		assertEquals(user.getEmail(), retrievedUser.getEmail());
 	}
 	
 	@Test
@@ -147,9 +147,25 @@ public class DataConnectivityTest {
 		List<Issue> retrievedIssues = issueService.readAll();
 		
 		assertEquals(6, retrievedIssues.size());
+		
+		//check the most recent one is first
+		assertEquals("Broken HTML link", retrievedIssues.get(0).getTitle());
+		assertEquals("The link to go to my awesome new web page isn't working", retrievedIssues.get(0).getUserDescription());
+		
+		//check the oldest issue is last
+		assertEquals("Incorrect query results", retrievedIssues.get(5).getTitle());
+		assertEquals("When I query my super cool database by primary key it returns the wrong results", retrievedIssues.get(5).getUserDescription());
 	}
 	
-	// TODO Test sorting retrieved comments by date
+	@Test
+	public void test_readAllByDepartment_WhenPassedADepartmentEnum_ThenReturnsAllIssuesAssignedToThatDepartmentSortedByDateDesc() {
+		List<Issue> retrievedIssues = issueService.readAllByDepartment(Department.WEB_SERVICES);
+		
+		assertEquals(2, retrievedIssues.size());
+		assertEquals("Broken HTML link", retrievedIssues.get(0).getTitle());
+		assertEquals("The link to go to my awesome new web page isn't working", retrievedIssues.get(0).getUserDescription());
+	}
+	
 	// TODO Remove All for Comments WHERE issueId == 
 	// TODO Remove All for Issues (Wipe Database)
 	// TODO Update Operations for Issues/Comments/User

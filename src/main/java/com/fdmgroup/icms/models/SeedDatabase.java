@@ -9,11 +9,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class SeedDatabase {
 	
-	public SeedDatabase() {}
-	
 	@Autowired
 	private ApplicationContext context;
-
+	
 	@Autowired
 	private IssueService issueService;
 	
@@ -24,7 +22,7 @@ public class SeedDatabase {
 		String userDescription = "I forgot my password to gitlab over 3 times";
 				
 		issue.setAssignedTo(Department.NETWORKING);
-		issue.setDateSubmitted(new Date());
+		issue.setDateSubmitted(new Date(System.currentTimeMillis() - (1 * 24 * 60 * 60 * 1000))); //1 day old
 		issue.setPriority(Priority.MAJOR);
 		issue.setStatus(Status.IN_PROGRESS);
 		issue.setSubmittedBy(15);
@@ -74,7 +72,7 @@ public class SeedDatabase {
 		userDescription = "Fix my bleepin' internet you dumb IT person";
 				
 		issue.setAssignedTo(Department.NETWORKING);
-		issue.setDateSubmitted(new Date());
+		issue.setDateSubmitted(new Date(System.currentTimeMillis() - (6 * 24 * 60 * 60 * 1000))); //6 days old;
 		issue.setPriority(Priority.CRITICAL);
 		issue.setStatus(Status.SUBMITTED);
 		issue.setSubmittedBy(0);
@@ -124,7 +122,7 @@ public class SeedDatabase {
 		userDescription = "The link to go to my awesome new web page isn't working";
 				
 		issue.setAssignedTo(Department.WEB_SERVICES);
-		issue.setDateSubmitted(new Date());
+		issue.setDateSubmitted(new Date(System.currentTimeMillis() - (0 * 24 * 60 * 60 * 1000))); //0 days old;;
 		issue.setPriority(Priority.NORMAL);
 		issue.setStatus(Status.IN_PROGRESS);
 		issue.setSubmittedBy(101);
@@ -174,7 +172,7 @@ public class SeedDatabase {
 		userDescription = "See title";
 				
 		issue.setAssignedTo(Department.WEB_SERVICES);
-		issue.setDateSubmitted(new Date());
+		issue.setDateSubmitted(new Date(System.currentTimeMillis() - (3 * 24 * 60 * 60 * 1000))); //3 days old
 		issue.setPriority(Priority.MINOR);
 		issue.setStatus(Status.SUBMITTED);
 		issue.setSubmittedBy(0);
@@ -224,7 +222,7 @@ public class SeedDatabase {
 		userDescription = "When I query my super cool database by primary key it returns the wrong results";
 				
 		issue.setAssignedTo(Department.WEB_APPS);
-		issue.setDateSubmitted(new Date());
+		issue.setDateSubmitted(new Date(System.currentTimeMillis() - (10 * 24 * 60 * 60 * 1000))); //10 days old
 		issue.setPriority(Priority.MAJOR);
 		issue.setStatus(Status.IN_PROGRESS);
 		issue.setSubmittedBy(15);
@@ -274,7 +272,7 @@ public class SeedDatabase {
 		userDescription = "I created this ticket to tell whoever is sees this to have a wonderful day";
 				
 		issue.setAssignedTo(Department.HELP_DESK);
-		issue.setDateSubmitted(new Date());
+		issue.setDateSubmitted(new Date(System.currentTimeMillis() - (4 * 60 * 60 * 1000))); //4 hours old
 		issue.setPriority(Priority.MINOR);
 		issue.setStatus(Status.SUBMITTED);
 		issue.setSubmittedBy(15);
@@ -317,9 +315,5 @@ public class SeedDatabase {
 		issue.addComment(comment);
 		
 		issueService.createOrUpdateIssue(issue);
-	}
-	
-	public void dropIssues() {
-		issueService.deleteAllIssues();
 	}
 }
