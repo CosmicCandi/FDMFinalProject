@@ -33,3 +33,4 @@ local.properties
 
 *.jsdtscope
 *.lst
+test/
