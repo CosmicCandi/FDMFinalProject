@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.fdmgroup.icms.models.Comment;
 import com.fdmgroup.icms.models.Department;
 import com.fdmgroup.icms.models.Issue;
 import com.fdmgroup.icms.models.IssueService;
-import com.fdmgroup.icms.models.SeedDatabase;
 import com.fdmgroup.icms.models.User;
 import com.fdmgroup.icms.models.UserRole;
 
@@ -62,9 +60,11 @@ public class MainController {
 	@RequestMapping(value="newIssue")
 	public String newIssuePage(Model model){
 		
-		model.addAttribute("newIssue", (Issue) context.getBean("issue"));
-		
+		Issue newIssue = (Issue) context.getBean("issue");
+		model.addAttribute("newIssue", newIssue);
+		issueService.createIssue(newIssue);
 		model.addAttribute("departmentList", Department.ticketHandlers);
+		
 		return "newIssue";
 	}
 	
@@ -95,7 +95,7 @@ public class MainController {
 	@RequestMapping(value="createIssue")
 	public String createIssuePage(Model model, Issue issue) {
 		
-		issueService.createOrUpdateIssue(issue);
+		issueService.createIssue(issue);
 		
 		return "issues";
 	}

@@ -16,7 +16,7 @@ public class IssueService {
 	private IssueJpaRepository issueRepo;
 	
 	@Transactional(readOnly=false)
-	public void createOrUpdateIssue(Issue issue){
+	public void createIssue(Issue issue){
 		issueRepo.save(issue);		
 	}
 	
@@ -32,6 +32,11 @@ public class IssueService {
 	public void removeIssue(int issueId){
 		issueRepo.delete(issueId);
 	}
+	
+	@Transactional(readOnly=false)
+	public void updateIssue(Issue issueToUpdate){
+		issueRepo.save(issueToUpdate);
+	}
 
 	public List<Issue> readAllByUserId(int userId) {
 		return issueRepo.findBySubmittedByOrderByDateSubmittedDesc(userId);
@@ -45,7 +50,6 @@ public class IssueService {
 	public void deleteAllIssues() {
 		issueRepo.deleteAll();
 	}
-
 }
 	
 	

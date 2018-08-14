@@ -1,7 +1,5 @@
 package com.fdmgroup.icms.models;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +14,7 @@ public class UserService {
 	private UserJpaRepository userRepo;
 	
 	@Transactional(readOnly=false)
-	public void createOrUpdateUser(User user){
+	public void createUser(User user){
 		userRepo.save(user);
 	}
 	
@@ -24,13 +22,14 @@ public class UserService {
 		return userRepo.findOneByUsername(username);
 	}
 	
-	public List<User> readUsers(String username) {
-		return userRepo.findByUsername(username);
-	}
-	
 	@Transactional(readOnly=false)
 	public void removeUser(int userId){
 		userRepo.delete(userId);
 	}	
+	
+	@Transactional(readOnly=false)
+	public void updateUser(User userToUpdate){
+		userRepo.save(userToUpdate);
+	}
 	
 }

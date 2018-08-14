@@ -64,7 +64,7 @@ public class SeedDatabase {
 		comment.setUserId(0);
 		issue.addComment(comment);
 		
-		issueService.createOrUpdateIssue(issue);
+		issueService.createIssue(issue);
 		
 		issue = (Issue)context.getBean("issue");
 
@@ -114,7 +114,7 @@ public class SeedDatabase {
 		comment.setUserId(0);
 		issue.addComment(comment);
 		
-		issueService.createOrUpdateIssue(issue);
+		issueService.createIssue(issue);
 		
 		issue = (Issue)context.getBean("issue");
 
@@ -164,7 +164,7 @@ public class SeedDatabase {
 		comment.setUserId(0);
 		issue.addComment(comment);
 		
-		issueService.createOrUpdateIssue(issue);
+		issueService.createIssue(issue);
 		
 		issue = (Issue)context.getBean("issue");
 
@@ -214,7 +214,7 @@ public class SeedDatabase {
 		comment.setUserId(0);
 		issue.addComment(comment);
 		
-		issueService.createOrUpdateIssue(issue);
+		issueService.createIssue(issue);
 		
 		issue = (Issue)context.getBean("issue");
 
@@ -264,7 +264,7 @@ public class SeedDatabase {
 		comment.setUserId(0);
 		issue.addComment(comment);
 		
-		issueService.createOrUpdateIssue(issue);
+		issueService.createIssue(issue);
 		
 		issue = (Issue)context.getBean("issue");
 
@@ -314,6 +314,6 @@ public class SeedDatabase {
 		comment.setUserId(0);
 		issue.addComment(comment);
 		
-		issueService.createOrUpdateIssue(issue);
+		issueService.createIssue(issue);
 	}
 }

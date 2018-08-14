@@ -39,7 +39,7 @@ public class ApplicationContextConfig {
 	public User user(){
 		return new User();
 	}
-	
+
 	@Bean
 	public SeedDatabase seedDatabase() {
 		return new SeedDatabase();

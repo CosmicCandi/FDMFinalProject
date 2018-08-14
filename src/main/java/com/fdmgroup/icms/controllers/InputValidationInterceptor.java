@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -59,7 +60,9 @@ public class InputValidationInterceptor extends HandlerInterceptorAdapter {
 			else {
 				request.setAttribute("Error_Message", "Username and Password combination does not exist.");
 				request.setAttribute("Display_Message", "block");
-
+			
+				System.out.println("cucumber");
+				
 				RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/complaint/login.jsp");
 				rd.forward(request, response);
 
