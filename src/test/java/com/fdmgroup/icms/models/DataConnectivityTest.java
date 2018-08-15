@@ -55,10 +55,10 @@ public class DataConnectivityTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		sdb = (SeedDatabase)context.getBean("seedDatabase");
+		sdb = context.getBean(SeedDatabase.class);
 		comments = new ArrayList<>();
-		comment = (Comment)context.getBean("comment");
-		issue = (Issue)context.getBean("issue");
+		comment = context.getBean(Comment.class);
+		issue = context.getBean(Issue.class);
 		
 		comment.setUserComment("This is a default comment.");
 		comment.setUserId(issue.getSubmittedBy());
@@ -84,8 +84,8 @@ public class DataConnectivityTest {
 	@Test
 	public void test_CreateIssue_WritesPassedIssueToDatabase() {
 		List<Comment> comments = new ArrayList<>();
-		Comment comment = (Comment) context.getBean("comment");
-		Issue issue = (Issue) context.getBean("issue");
+		Comment comment = context.getBean(Comment.class);
+		Issue issue = context.getBean(Issue.class);
 		
 		comment.setUserComment("This will work.");
 		comment.setUserId(issue.getIssueId());
@@ -106,7 +106,7 @@ public class DataConnectivityTest {
 	}
 	@Test
 	public void test_ReadUser_WhenUsernameIsPassed_ReturnsProperUser(){
-		User user = (User) context.getBean("user");
+		User user = context.getBean(User.class);
 		user.setUsername("civilwardagreatest");
 		user.setPassword("Playground1");
 		user.setEmail("harley@halley.com");
@@ -121,27 +121,27 @@ public class DataConnectivityTest {
 	
 	@Test
 	public void test_IssueAddComment_SuccessfullyAddsAComment_AndWritesItToTheDatabase(){
-		issue = (Issue) context.getBean("issue");
+		issue = context.getBean(Issue.class);
 		issue.setAssignedTo(Department.HR);
 	    issue.setPriority(Priority.CRITICAL);
 	    issue.setTitle("This is a default issue.");
 	    issue.setDateSubmitted(Calendar.getInstance().getTime());
 	    
-	    Comment comment = (Comment) context.getBean("comment");
+	    Comment comment = context.getBean(Comment.class);
 		comment.setIssueId(issue);
 		comment.setUserComment("Testing adding a comment to an existing issue");
 		comment.setUserId(0);
 		issue.addComment(comment);
 		issueService.createIssue(issue);
 		
-		Comment comment2 = (Comment) context.getBean("comment");
+		Comment comment2 = context.getBean(Comment.class);
 		comment2.setIssueId(issue);
 		comment2.setUserComment("This is the second comment.");
 		comment2.setUserId(42);
 		
 		issue.addComment(comment2);
 		
-		Comment comment3 = (Comment) context.getBean("comment");
+		Comment comment3 = context.getBean(Comment.class);
 		comment3.setIssueId(issue);
 		comment3.setUserComment("Written directly to database");
 		comment3.setUserId(0);
@@ -157,7 +157,7 @@ public class DataConnectivityTest {
 	
 	@Test
 	public void test_WhenAnIssueIsUpdated_TheReturnedValuesAreTheUpdatedValues(){
-		User user = (User) context.getBean("user");
+		User user = context.getBean(User.class);
 		user.setUsername("civilwardabest");
 		user.setPassword("Playground1");
 		user.setEmail("harley@halley.com");
@@ -166,7 +166,7 @@ public class DataConnectivityTest {
 		
 		userService.createUser(user);
 		
-		issue = (Issue) context.getBean("issue");
+		issue = context.getBean(Issue.class);
 		issue.setAssignedTo(Department.HR);
 		issue.setUserDescription("Testing Update functionality");
 	    issue.setPriority(Priority.CRITICAL);
@@ -188,7 +188,7 @@ public class DataConnectivityTest {
 	}
 	@Test
 	public void test_WhenACommentGetsUpdated_TheUpdatedValuesAreReturned(){
-		User user = (User) context.getBean("user");
+		User user = context.getBean(User.class);
 		user.setUsername("civilwardabest");
 		user.setPassword("Playground1");
 		user.setEmail("harley@halley.com");
@@ -197,7 +197,7 @@ public class DataConnectivityTest {
 		
 		userService.createUser(user);
 		
-		issue = (Issue) context.getBean("issue");
+		issue = context.getBean(User.class);.getBean(Issue.class);
 		issue.setAssignedTo(Department.HR);
 	    issue.setPriority(Priority.CRITICAL);
 	    issue.setTitle("Test Comment Update.");
@@ -205,7 +205,7 @@ public class DataConnectivityTest {
 	    issue.setDateSubmitted(Calendar.getInstance().getTime());
 	    
 	    
-	    Comment comment = (Comment) context.getBean("comment");
+	    Comment comment = context.getBean(Comment.class);
 		comment.setIssueId(issue);
 		comment.setUserComment("This is the original comment.");
 		comment.setUserId(user.getUserId());
@@ -227,7 +227,7 @@ public class DataConnectivityTest {
 	
 	@Test
 	public void test_WhenAUserGetsUpdated_UpdatedValuesAreReturned(){
-		User user = (User) context.getBean("user");
+		User user = context.getBean(User.class);
 		user.setUsername("civilwardaworst");
 		user.setPassword("Playground1");
 		user.setEmail("harley@halley.com");

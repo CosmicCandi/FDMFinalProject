@@ -3,6 +3,7 @@ package com.fdmgroup.icms.appconfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.fdmgroup.icms.models.Comment;
+import com.fdmgroup.icms.models.IcmsAopLogger;
 import com.fdmgroup.icms.models.Issue;
 import com.fdmgroup.icms.models.SeedDatabase;
 import com.fdmgroup.icms.models.User;
@@ -19,7 +21,8 @@ import com.fdmgroup.icms.models.User;
 @ComponentScan(basePackages = {"com.fdmgroup.icms.appconfig", "com.fdmgroup.icms.models", "com.fdmgroup.icms.repositories", "com.fdmgroup.icms.controllers"})
 @EnableJpaRepositories("com.fdmgroup.icms.repositories")
 @EnableTransactionManagement
-@Import({TestJpaConfig.class, JpaConfig.class, WebConfig.class })
+@EnableAspectJAutoProxy
+@Import({TestJpaConfig.class, JpaConfig.class, WebConfig.class})
 public class ApplicationContextConfig {
 
 	@Bean
@@ -44,4 +47,11 @@ public class ApplicationContextConfig {
 	public SeedDatabase seedDatabase() {
 		return new SeedDatabase();
 	}
+	
+	@Bean
+	@Scope("singleton")
+	public IcmsAopLogger aopLogger(){
+		return new IcmsAopLogger();
+	}
+	
 }

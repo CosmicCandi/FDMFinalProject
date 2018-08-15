@@ -25,7 +25,7 @@
 	
 	<context-param>
 		<param-name>spring.profiles.active</param-name>
-		<param-value>default, live</param-value>
+		<param-value>live, test</param-value>
 	</context-param>
 	
 </web-app>

@@ -20,11 +20,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+
 
 
 @Entity
 @Table(name="icms_issue")
 @SequenceGenerator(name="issue_id_seq", initialValue=1, allocationSize=1 )
+@EnableAspectJAutoProxy
 public class Issue {
 
 	public Issue(){

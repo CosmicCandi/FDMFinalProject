@@ -50,6 +50,12 @@
   		<groupId>org.springframework</groupId>
   		<artifactId>spring-webmvc</artifactId>
   		<version>4.1.7.RELEASE</version>
+  		<exclusions>
+  			<exclusion>
+  				<artifactId>commons-logging</artifactId>
+  				<groupId>commons-logging</groupId>
+  			</exclusion>
+  		</exclusions>
   	</dependency>
   	<dependency>
   		<groupId>log4j</groupId>
@@ -87,8 +93,24 @@
   		<version>3.0.1</version>
   		<scope>provided</scope>
   	</dependency>
+  	<dependency>
+  		<groupId>org.slf4j</groupId>
+  		<artifactId>slf4j-log4j12</artifactId>
+  		<version>1.7.13</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.slf4j</groupId>
+  		<artifactId>slf4j-api</artifactId>
+  		<version>1.7.13</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.slf4j</groupId>
+  		<artifactId>jcl-over-slf4j</artifactId>
+  		<version>1.7.12</version>
+  	</dependency>
   </dependencies>
     <build>
+    
     <finalName>icms</finalName>
     <plugins>
 			<plugin>
@@ -111,5 +133,5 @@
 				</configuration>
 			</plugin>
 		</plugins>
-  </build>
+	</build>
 </project>

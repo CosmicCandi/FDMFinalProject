@@ -1,5 +1,6 @@
 package com.fdmgroup.icms.appconfig;
 
+import java.beans.PropertyVetoException;
 import java.util.Properties;
 
 import javax.sql.DataSource;
@@ -17,6 +18,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
 @Configuration
 @ComponentScan(basePackages= {"com.fdmgroup.icms.appconfig", "com.fdmgroup.icms.controllers", "com.fdmgroup.icms.models", "com.fdmgroup.icms.repositories" })
 @EnableJpaRepositories("com.fdmgroup.icms.repositories")
@@ -25,7 +28,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class TestJpaConfig {
 
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws PropertyVetoException {
 		LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
 		em.setDataSource(dataSource());
 		em.setPackagesToScan(new String[] { "com.fdmgroup.icms.models", "com.fdmgroup.icms.repositories" });
@@ -38,11 +41,13 @@ public class TestJpaConfig {
 	}
 
 	@Bean
-	public DataSource dataSource() {
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-		dataSource.setUrl("jdbc:oracle:thin:@localhost:1521:xe");
-		dataSource.setUsername("test");
+	public DataSource dataSource() throws PropertyVetoException {
+		ComboPooledDataSource dataSource = new ComboPooledDataSource();
+		dataSource.setDriverClass("oracle.jdbc.driver.OracleDriver");
+		dataSource.setMaxPoolSize(100);
+		dataSource.setMinPoolSize(10);
+		dataSource.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:xe");
+		dataSource.setUser("test");
 		dataSource.setPassword("password");
 		return dataSource;
 	}
@@ -56,12 +61,12 @@ public class TestJpaConfig {
 		properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
 		
 		//since this is the "test" environment, we WILL show the SQL being run during database processes
-		properties.setProperty("hibernate.show_sql", "true");
+		properties.setProperty("hibernate.show_sql", "false");
 		return properties;
 	}
 	
 	@Bean
-	public PlatformTransactionManager transactionManager() {
+	public PlatformTransactionManager transactionManager() throws PropertyVetoException {
 		return new JpaTransactionManager(entityManagerFactory().getObject());
 	}
 }
